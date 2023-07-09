@@ -16,12 +16,14 @@ public class Foto {
     private String ruta;
     private LocalDate fechaAgregado;
     private String info;
+    private int prioridad;
 
-    public Foto(String nombre, String ruta, LocalDate fechaAgregado, String info) {
+    public Foto(String nombre, String ruta, LocalDate fechaAgregado, String info, int prioridad) {
         this.nombre = nombre;
         this.ruta = ruta;
         this.fechaAgregado = fechaAgregado;
         this.info = info;
+        this.prioridad = prioridad;
     }
 
     public String getNombre() {
@@ -56,10 +58,17 @@ public class Foto {
         this.info = info;
     }
 
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
     @Override
     public String toString() {
-        return "Foto{" + "nombre=" + nombre + ", ruta=" + ruta + ", fechaAgregado=" + fechaAgregado + ", info=" + info + '}';
+        return "Foto{" + "nombre=" + nombre + ", ruta=" + ruta + ", fechaAgregado=" + fechaAgregado + ", info=" + info + ", prioridad=" + prioridad + '}';
     }
-    
-    
+   
 }
