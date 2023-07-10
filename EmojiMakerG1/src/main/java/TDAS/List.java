@@ -32,5 +32,8 @@ public interface List<E> {
     public E set(int index, E element); 
     
     public void removeAll(E element);
+ 
+    public E getNext(int index);
     
+    public E getPrev(int index);
 }

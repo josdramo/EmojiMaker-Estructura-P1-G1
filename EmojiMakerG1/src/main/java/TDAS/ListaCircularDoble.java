@@ -6,13 +6,13 @@ package TDAS;
 
 import Excepciones.UnderflowException;
 
-
 /**
  *
  * @author Dell
+ * @param <E>
  */
-public class ListaCircularDoble<E> implements List<E>{
-    
+public class ListaCircularDoble<E> implements List<E> {
+
     private NodoDoble<E> first;
     private NodoDoble<E> last;
 
@@ -33,12 +33,13 @@ public class ListaCircularDoble<E> implements List<E>{
 
     @Override
     public boolean isEmpty() {
-      return this.first == null && this.last == null;
+        return this.first == null && this.last == null;
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        first = null;
+        last = null;
     }
 
     @Override
@@ -94,7 +95,7 @@ public class ListaCircularDoble<E> implements List<E>{
         first.setPrev(last);
         return element;
     }
-    
+
     @Override
     public E remove(int index) {
         if (index < 0 || index >= size()) {
@@ -156,7 +157,7 @@ public class ListaCircularDoble<E> implements List<E>{
             }
         }
     }
-    
+
     private NodoDoble<E> removeNode(NodoDoble<E> node) {
         NodoDoble<E> nextNode = node.getNext();
         NodoDoble<E> prevNode = node.getPrev();
@@ -175,6 +176,55 @@ public class ListaCircularDoble<E> implements List<E>{
         return nextNode;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        String result = "{";
+        NodoDoble<E> p;
+        for (p = first; p != null; p = p.getNext()) {
+
+            result += p.getElement() + ", ";
+        }
+        if (!isEmpty()) {
+            result = result.substring(0, result.length() - 2);
+        }
+        return result + "}";
+    }
+
+    @Override
+    public E getNext(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        NodoDoble<E> nodoActual = first;
+        for (int i = 0; i < index; i++) {
+            nodoActual = nodoActual.getNext();
+        }
+        NodoDoble<E> siguienteNodo = nodoActual.getNext();
+
+        if (siguienteNodo == null) {
+            return first.getElement();
+        } else {
+            return siguienteNodo.getElement();
+        }
+    }
+
+    @Override
+    public E getPrev(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        NodoDoble<E> nodoActual = first;
+        for (int i = 0; i < index; i++) {
+            nodoActual = nodoActual.getNext();
+        }
+        NodoDoble<E> nodoAnterior = nodoActual.getPrev();
+
+        if (nodoAnterior == null) {
+            return last.getElement();
+        } else {
+            return nodoAnterior.getElement();
+        }
+    }
 }
