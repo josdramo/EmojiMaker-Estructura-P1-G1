@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="451.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="46.0" prefWidth="352.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="26.0" prefWidth="416.0" text="Ingrese los datos para guardar el componente">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <HBox prefHeight="41.0" prefWidth="352.0">
+         <children>
+            <VBox prefHeight="72.0" prefWidth="166.0" spacing="20.0">
+               <children>
+                  <Label text="Ruta del archivo:">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Nombre del archivo:">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="72.0" prefWidth="230.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="campoRutaComponente" prefHeight="25.0" prefWidth="230.0" />
+                  <TextField fx:id="campoNombreComponente" />
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="38.0" prefWidth="352.0" spacing="120.0">
+         <children>
+            <Button fx:id="btnGuardarComponente" mnemonicParsing="false" onAction="#agregarComponente" prefHeight="40.0" prefWidth="100.0" text="Guardar" />
+            <Button fx:id="btnCerrarVentanaComponente" mnemonicParsing="false" onAction="#cerrarVentanaComponente" prefHeight="40.0" prefWidth="100.0" text="Cerrar" />
+         </children>
+         <VBox.margin>
+            <Insets left="40.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
