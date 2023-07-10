@@ -1,4 +1,4 @@
 com\pooespol\emojimakerg1\PrimaryController.class
-com\pooespol\emojimakerg1\SecondaryController.class
-module-info.class
 com\pooespol\emojimakerg1\App.class
+module-info.class
+com\pooespol\emojimakerg1\SecondaryController.class
