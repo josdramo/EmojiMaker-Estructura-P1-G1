@@ -33,42 +33,65 @@ public class AuthController {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        Usuario usuario = new Usuario(nombre, pass);
+        Boolean emptyCredentials = nombre.isBlank() || pass.isBlank();
         
-        TreeSet<Usuario> usuarios = new TreeSet(new UserComparator());
-        usuarios.addAll(App.usuarios);
-        
-        Boolean authSuccess = usuarios.contains(usuario);
+        if (!emptyCredentials) {
+            Usuario usuario = new Usuario(nombre, pass);
 
-        if (authSuccess) {
-            app.createSession(usuario);
+            TreeSet<Usuario> usuarios = new TreeSet(new UserComparator());
+            usuarios.addAll(App.usuarios);
+
+            Boolean authSuccess = usuarios.contains(usuario);
+
+            if (authSuccess) {
+                app.createSession(usuario);
+            }
+
+            if (!authSuccess) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Credenciales incorrectas.");
+                alert.showAndWait();
+            }
         }
         
-        if (!authSuccess) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Credenciales incorrectas.");
-            alert.showAndWait();
+        if (emptyCredentials) {
+            showEmptyCredentialsAlert();
         }
+    }
+    
+    public void showEmptyCredentialsAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText("No intentes pasarte de listo.");
+        alert.showAndWait();
     }
     
     public void onRegister() {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        Usuario usuario = new Usuario(nombre, pass);
-        Boolean alreadyRegistered = App.usuarios.contains(usuario);
+        Boolean emptyCredentials = nombre.isBlank() || pass.isBlank();
         
-        if (alreadyRegistered) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Nombre de usuario ocupado.");
-            alert.showAndWait();
+        if (!emptyCredentials) {
+            Usuario usuario = new Usuario(nombre, pass);
+            Boolean alreadyRegistered = App.usuarios.contains(usuario);
+
+            if (alreadyRegistered) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Nombre de usuario ocupado.");
+                alert.showAndWait();
+            }
+
+            if (!alreadyRegistered) {
+                App.usuarios.add(usuario);
+                app.createSession(usuario);
+            }
         }
         
-        if (!alreadyRegistered) {
-            App.usuarios.add(usuario);
-            app.createSession(usuario);
+        if (emptyCredentials) {
+            showEmptyCredentialsAlert();
         }
     }
 

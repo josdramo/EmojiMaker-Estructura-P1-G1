@@ -57,6 +57,8 @@ public class App extends Application {
     
     public void createSession(Usuario usuario) {
         System.out.println("creando sesión");
+        
+        switchToMenuPrincipal();
     }
 
     public void openCreateEmoticonModal() {
