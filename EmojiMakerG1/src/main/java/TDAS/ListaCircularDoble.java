@@ -130,7 +130,19 @@ public class ListaCircularDoble<E> implements List<E> {
         }
         return nodoActual.getElement();
     }
+    
+    public NodoDoble<E> getNode(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
 
+        NodoDoble<E> nodoActual = first;
+        for (int i = 0; i < index; i++) {
+            nodoActual = nodoActual.getNext();
+        }
+        return nodoActual;
+    }
+    
     @Override
     public E set(int index, E element) {
         if (index < 0 || index >= size()) {

@@ -66,11 +66,11 @@
       </HBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="prevButton" mnemonicParsing="false" text="Prev" />
+            <Button fx:id="prevButton" mnemonicParsing="false" onAction="#elementoPrev" text="Prev" />
             <ImageView fx:id="imgC1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgC2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgC3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="nextButton" mnemonicParsing="false" text="NeXt" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#elementoNext" text="nEXt" />
          </children>
          <VBox.margin>
             <Insets />
