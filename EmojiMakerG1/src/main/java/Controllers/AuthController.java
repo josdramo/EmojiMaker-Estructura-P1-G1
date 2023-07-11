@@ -4,6 +4,7 @@
  */
 package Controllers;
 
+import com.pooespol.emojimakerg1.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -13,6 +14,8 @@ import javafx.scene.layout.VBox;
  * @author infrative
  */
 public class AuthController {
+    App app;
+    
     @FXML
     private VBox container;
     
@@ -27,10 +30,18 @@ public class AuthController {
     }
     
     public void onLogin() {
-
+        
+        // TODO: Verificar credenciales
+        app.switchToMenuPrincipal();
     }
     
     public void onRegister() {
         
     }
+
+    public void setApp(App app) {
+        this.app = app;
+    }
+    
+    
 }
