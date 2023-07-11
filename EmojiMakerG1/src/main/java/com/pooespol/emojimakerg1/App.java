@@ -15,6 +15,7 @@ import java.io.IOException;
 public class App extends Application {
     private Scene authScene;
     private Scene menuPrincipalScene;
+    private Scene createEmoticonScene;
     
     private Stage primaryStage;
     
@@ -38,9 +39,11 @@ public class App extends Application {
         try {
             FXMLLoader authLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/auth.fxml"));
             FXMLLoader menuLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/menuPrincipal.fxml"));
+            FXMLLoader createEmoticonLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/createEmoticon.fxml"));
             
             Parent auth = authLoader.load();
             Parent menu = menuLoader.load();
+            Parent createEmoticon = createEmoticonLoader.load();
             
             AuthController authController = authLoader.getController();
             
@@ -48,6 +51,7 @@ public class App extends Application {
             
             authScene = new Scene(auth);
             menuPrincipalScene = new Scene(menu);
+            createEmoticonScene = new Scene(createEmoticon);
         } catch (IOException e) {
             e.printStackTrace();
         }
