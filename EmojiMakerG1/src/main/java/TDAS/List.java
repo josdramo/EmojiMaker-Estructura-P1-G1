@@ -36,4 +36,8 @@ public interface List<E> {
     public E getNext(int index);
     
     public E getPrev(int index);
+    
+    public NodoDoble<E> getNextNode(NodoDoble<E> node);
+    
+    public NodoDoble<E> getPrevNode(NodoDoble<E> node);
 }
