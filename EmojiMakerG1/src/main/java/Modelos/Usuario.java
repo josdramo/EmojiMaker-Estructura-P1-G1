@@ -31,10 +31,7 @@ public class Usuario implements Serializable {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "username=" + username + ", password=" + password + '}';
+    public void setPassword(String password) {
+        this.password = password;
     }
-    
-    
 }

@@ -6,7 +6,6 @@ package Datos;
 
 import TDAS.ListaCircularDoble;
 import java.io.File;
-import java.io.IOException;
 
 /**
  *

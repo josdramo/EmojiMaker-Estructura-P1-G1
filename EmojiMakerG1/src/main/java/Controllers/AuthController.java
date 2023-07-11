@@ -32,7 +32,12 @@ public class AuthController {
     public void onLogin() {
         
         // TODO: Verificar credenciales
-        app.switchToMenuPrincipal();
+        //app.switchToMenuPrincipal();
+        
+        String nombre = usernameField.getText();
+        String pass = passwordField.getText();
+        
+        
     }
     
     public void onRegister() {

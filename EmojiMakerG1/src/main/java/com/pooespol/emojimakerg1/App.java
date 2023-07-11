@@ -2,6 +2,8 @@ package com.pooespol.emojimakerg1;
 
 import Controllers.AuthController;
 import Controllers.MenuPrincipalController;
+import Datos.Serializator;
+import Modelos.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashSet;
 import javafx.stage.Modality;
+import javafx.stage.WindowEvent;
 
 /**
  * JavaFX App
@@ -21,7 +25,15 @@ public class App extends Application {
     
     private Stage primaryStage;
     
+    private HashSet<Usuario> usuarios;
+    
     public static void main(String[] args) {
+        HashSet<Usuario> usuariosDesearilizados = Serializator.deserialize("usuarios.se");
+        
+        if (usuariosDesearilizados == null) {
+            usuariosDesearilizados = new HashSet();
+        }
+        
         launch();
     }
 
@@ -29,12 +41,31 @@ public class App extends Application {
     public void start(Stage stage) {
         primaryStage = stage;
         
+        primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
+            Serializator.serialize(usuarios, "usuarios.se");
+        });
+        
         loadScenes();
         
         stage.setTitle("Inicia sesión");
         stage.setScene(authScene);
         stage.show();
+    }
+    
+    public void switchToMenuPrincipal() {
+        primaryStage.setScene(menuPrincipalScene);
+        primaryStage.setTitle("Menu Principal");
+    }
 
+    public void openCreateEmoticonModal() {
+        Stage stage = new Stage();
+        stage.setScene(createEmoticonScene);
+        
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(primaryStage.getScene().getWindow());
+        
+        stage.setTitle("Create Emoticon");
+        stage.show();
     }
     
     public void loadScenes() {
@@ -61,20 +92,9 @@ public class App extends Application {
             System.out.println(e.getMessage());
         }
     }
-    
-    public void switchToMenuPrincipal() {
-        primaryStage.setScene(menuPrincipalScene);
-        primaryStage.setTitle("Menu Principal");
-    }
 
-    public void openCreateEmoticonModal() {
-        Stage stage = new Stage();
-        stage.setScene(createEmoticonScene);
-        
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(primaryStage.getScene().getWindow());
-        
-        stage.setTitle("Create Emoticon");
-        stage.show();
+    public HashSet<Usuario> getUsuarios() {
+        return usuarios;
     }
+    
 }
