@@ -4,10 +4,54 @@
  */
 package Datos;
 
+import TDAS.ListaCircularDoble;
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author Dell
  */
 public class LeerArchivos {
+    public static ListaCircularDoble<String> listaR(){
+        ListaCircularDoble<String> listaRostros = new ListaCircularDoble<>();
+        String carpeta = "src/main/resources/images/faces/"; // Ruta de la carpeta que contiene las imágenes
+        String extension = ".png"; // Extensión de los archivos de imagen
+
+        File folder = new File(carpeta);
+        File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
+        
+        for(File i:archivos){
+            listaRostros.addLast(i.toString());
+        }
+        return listaRostros;
+    }
     
+    public static ListaCircularDoble<String> listaO(){
+        ListaCircularDoble<String> listaOjos = new ListaCircularDoble<>();
+        String carpeta = "src/main/resources/images/eyes/"; // Ruta de la carpeta que contiene las imágenes
+        String extension = ".png"; // Extensión de los archivos de imagen
+
+        File folder = new File(carpeta);
+        File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
+        
+        for(File i:archivos){
+            listaOjos.addLast(i.toString());
+        }
+        return listaOjos;
+    }
+    
+    public static ListaCircularDoble<String> listaB(){
+        ListaCircularDoble<String> listaBocas = new ListaCircularDoble<>();
+        String carpeta = "src/main/resources/images/mouth/"; // Ruta de la carpeta que contiene las imágenes
+        String extension = ".png"; // Extensión de los archivos de imagen
+
+        File folder = new File(carpeta);
+        File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
+        
+        for(File i:archivos){
+            listaBocas.addLast(i.toString());
+        }
+        return listaBocas;
+    }
 }
