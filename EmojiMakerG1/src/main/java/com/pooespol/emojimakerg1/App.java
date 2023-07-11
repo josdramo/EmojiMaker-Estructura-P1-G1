@@ -1,6 +1,7 @@
 package com.pooespol.emojimakerg1;
 
 import Controllers.AuthController;
+import Controllers.MenuPrincipalController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.stage.Modality;
 
 /**
  * JavaFX App
@@ -46,14 +48,17 @@ public class App extends Application {
             Parent createEmoticon = createEmoticonLoader.load();
             
             AuthController authController = authLoader.getController();
+            MenuPrincipalController menuPrincipalController = menuLoader.getController();
             
             authController.setApp(this);
+            menuPrincipalController.setApp(this);
             
             authScene = new Scene(auth);
             menuPrincipalScene = new Scene(menu);
             createEmoticonScene = new Scene(createEmoticon);
+            
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     
@@ -61,5 +66,15 @@ public class App extends Application {
         primaryStage.setScene(menuPrincipalScene);
         primaryStage.setTitle("Menu Principal");
     }
-   
+
+    public void openCreateEmoticonModal() {
+        Stage stage = new Stage();
+        stage.setScene(createEmoticonScene);
+        
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(primaryStage.getScene().getWindow());
+        
+        stage.setTitle("Create Emoticon");
+        stage.show();
+    }
 }
