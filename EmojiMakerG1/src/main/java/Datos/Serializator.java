@@ -24,7 +24,8 @@ public class Serializator {
                 out.writeObject(object);
             }
         } catch (IOException e) {
-            System.out.println("[ERROR] - Serialization");
+            System.out.println("[ERROR] Serialization.serialize");
+            // e.printStackTrace();
         }
     }
     

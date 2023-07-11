@@ -4,8 +4,12 @@
  */
 package Controllers;
 
+import Comparators.UserComparator;
+import Modelos.Usuario;
 import com.pooespol.emojimakerg1.App;
+import java.util.TreeSet;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -25,23 +29,47 @@ public class AuthController {
     @FXML
     private TextField passwordField;
     
-    public void initialize() {
-        System.out.println("Hosss");
-    }
-    
-    public void onLogin() {
-        
-        // TODO: Verificar credenciales
-        //app.switchToMenuPrincipal();
-        
+    public void onLogin() {       
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
+        Usuario usuario = new Usuario(nombre, pass);
         
+        TreeSet<Usuario> usuarios = new TreeSet(new UserComparator());
+        usuarios.addAll(App.usuarios);
+        
+        Boolean authSuccess = usuarios.contains(usuario);
+
+        if (authSuccess) {
+            app.createSession(usuario);
+        }
+        
+        if (!authSuccess) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Credenciales incorrectas.");
+            alert.showAndWait();
+        }
     }
     
     public void onRegister() {
+        String nombre = usernameField.getText();
+        String pass = passwordField.getText();
         
+        Usuario usuario = new Usuario(nombre, pass);
+        Boolean alreadyRegistered = App.usuarios.contains(usuario);
+        
+        if (alreadyRegistered) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Nombre de usuario ocupado.");
+            alert.showAndWait();
+        }
+        
+        if (!alreadyRegistered) {
+            App.usuarios.add(usuario);
+            app.createSession(usuario);
+        }
     }
 
     public void setApp(App app) {

@@ -1,5 +1,7 @@
 package com.pooespol.emojimakerg1;
 
+import Comparators.UserByNameComparator;
+import Comparators.UserComparator;
 import Controllers.AuthController;
 import Controllers.MenuPrincipalController;
 import Datos.Serializator;
@@ -11,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.TreeSet;
 import javafx.stage.Modality;
 import javafx.stage.WindowEvent;
 
@@ -25,14 +27,10 @@ public class App extends Application {
     
     private Stage primaryStage;
     
-    private HashSet<Usuario> usuarios;
+    public static TreeSet<Usuario> usuarios;
     
     public static void main(String[] args) {
-        HashSet<Usuario> usuariosDesearilizados = Serializator.deserialize("usuarios.se");
-        
-        if (usuariosDesearilizados == null) {
-            usuariosDesearilizados = new HashSet();
-        }
+        usuarios = deserializeUsuarios();
         
         launch();
     }
@@ -55,6 +53,10 @@ public class App extends Application {
     public void switchToMenuPrincipal() {
         primaryStage.setScene(menuPrincipalScene);
         primaryStage.setTitle("Menu Principal");
+    }
+    
+    public void createSession(Usuario usuario) {
+        System.out.println("creando sesión");
     }
 
     public void openCreateEmoticonModal() {
@@ -92,9 +94,15 @@ public class App extends Application {
             System.out.println(e.getMessage());
         }
     }
-
-    public HashSet<Usuario> getUsuarios() {
-        return usuarios;
+    
+    private static TreeSet<Usuario> deserializeUsuarios() {
+        TreeSet<Usuario> usuariosDesearilizados = Serializator.deserialize("usuarios.se");
+        
+        if (usuariosDesearilizados == null) {
+            usuariosDesearilizados = new TreeSet(new UserByNameComparator());
+        }
+        
+        return usuariosDesearilizados;
     }
     
 }
