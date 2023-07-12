@@ -241,7 +241,6 @@ public class ListaCircularDoble<E> implements List<E> {
         }
     }
 
-    @Override
     public NodoDoble<E> getNextNode(NodoDoble<E> node) {
         if (isEmpty()) {
             throw new NoSuchElementException("La lista está vacía.");
@@ -249,8 +248,7 @@ public class ListaCircularDoble<E> implements List<E> {
 
         return node.getNext();
     }
-
-    @Override
+    
     public NodoDoble<E> getPrevNode(NodoDoble<E> node){
         if (isEmpty()) {
         throw new NoSuchElementException("La lista está vacía.");

@@ -39,9 +39,5 @@ public interface List<E> extends Serializable {
     
     public E getPrev(int index);
     
-    public NodoDoble<E> getNextNode(NodoDoble<E> node);
-    
-    public NodoDoble<E> getPrevNode(NodoDoble<E> node);
-    
     public Boolean has(E element); 
 }
