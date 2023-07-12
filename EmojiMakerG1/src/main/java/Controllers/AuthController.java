@@ -5,6 +5,7 @@
 package Controllers;
 
 import Comparators.UserComparator;
+import Modelos.Profile;
 import Modelos.Usuario;
 import com.pooespol.emojimakerg1.App;
 import java.util.TreeSet;
@@ -86,6 +87,9 @@ public class AuthController {
 
             if (!alreadyRegistered) {
                 App.usuarios.add(usuario);
+                
+                Profile profile = new Profile(usuario);
+                
                 app.createSession(usuario);
             }
         }

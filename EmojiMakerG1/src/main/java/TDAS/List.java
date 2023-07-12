@@ -40,4 +40,6 @@ public interface List<E> {
     public NodoDoble<E> getNextNode(NodoDoble<E> node);
     
     public NodoDoble<E> getPrevNode(NodoDoble<E> node);
+    
+    public Boolean has(E element); 
 }

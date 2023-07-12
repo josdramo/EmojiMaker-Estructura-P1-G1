@@ -5,7 +5,9 @@
 package Modelos;
 
 import Enums.EmojiComponentType;
+import TDAS.List;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -13,16 +15,16 @@ import java.util.Stack;
  * @author infrative
  */
 public class Emoticon extends Model {
-    private HashMap<EmojiComponentType, EmojiComponent> componentes;
-    private Stack<EmojiComponent> historial;
+    private HashMap<EmojiComponentType, String> componentes;
+    private Stack<String> historial;
     
     public Emoticon() {
         componentes = new HashMap();
         historial = new Stack();
     }
     
-    public void updateComponent(EmojiComponentType type, EmojiComponent component) {
-        EmojiComponent componentePrevio = componentes.get(type);
+    public void updateComponent(EmojiComponentType type, String component) {
+        String componentePrevio = componentes.get(type);
         
         if (componentePrevio != null) {
             historial.add(componentePrevio);
@@ -31,23 +33,23 @@ public class Emoticon extends Model {
         componentes.put(type, component);
     }
     
-    public EmojiComponent getComponent(EmojiComponentType type) {
+    public String getComponent(EmojiComponentType type) {
         return componentes.get(type);
     }
     
-    public void restoreLastChange() {
+    public void restoreLastChange(Map<EmojiComponentType, List<String>> componentesParaComprobar) {
         if (!historial.isEmpty()) {
-            EmojiComponent ultimoCambio = historial.pop();
+            String ultimoCambio = historial.pop();
             
-            if (ultimoCambio instanceof Face) {
+            if (componentesParaComprobar.get(EmojiComponentType.FACE).has(ultimoCambio)) {
                 componentes.put(EmojiComponentType.FACE, ultimoCambio);
             }
             
-            if (ultimoCambio instanceof Mouth) {
-                componentes.put(EmojiComponentType.MOUTH, ultimoCambio);
+            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).has(ultimoCambio)) {
+                componentes.put(EmojiComponentType.MIRADA, ultimoCambio);
             }
             
-            if (ultimoCambio instanceof Mirada) {
+            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).has(ultimoCambio)) {
                 componentes.put(EmojiComponentType.MIRADA, ultimoCambio);
             }
         }

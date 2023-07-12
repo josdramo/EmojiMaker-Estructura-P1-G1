@@ -5,7 +5,9 @@ import Comparators.UserComparator;
 import Controllers.AuthController;
 import Controllers.MenuPrincipalController;
 import Controllers.ConsultarEmojisController;
+import Controllers.CreateEmoticonController;
 import Datos.Serializator;
+import Modelos.Profile;
 import Modelos.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,8 @@ public class App extends Application {
     private Scene consultarEmojiScene;
     
     private Stage primaryStage;
+    
+    private Profile profile;
     
     public static TreeSet<Usuario> usuarios;
     
@@ -71,6 +75,10 @@ public class App extends Application {
         System.out.println("creando sesión");
         
         switchToMenuPrincipal();
+        
+        
+        
+         // TODO: Crear perfil
     }
     
     public void destroySession() {
@@ -108,10 +116,12 @@ public class App extends Application {
             AuthController authController = authLoader.getController();
             MenuPrincipalController menuPrincipalController = menuLoader.getController();
             ConsultarEmojisController verEmojisController = consultarEmojisLoader.getController();
+            CreateEmoticonController createEmoticonController = createEmoticonLoader.getController();
             
             authController.setApp(this);
             menuPrincipalController.setApp(this);
             verEmojisController.setApp(this);
+            createEmoticonController.setApp(this);
             
             authScene = new Scene(auth);
             menuPrincipalScene = new Scene(menu);
@@ -131,6 +141,10 @@ public class App extends Application {
         }
         
         return usuariosDesearilizados;
+    }
+
+    public Profile getProfile() {
+        return profile;
     }
     
 }
