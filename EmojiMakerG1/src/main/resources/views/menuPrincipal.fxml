@@ -7,5 +7,6 @@
    <children>
       <Button mnemonicParsing="false" onAction="#onConsultarEmojis" text="Consultar Emojis" />
       <Button mnemonicParsing="false" onAction="#onConsultarComponentes" text="Consultar Components" />
+      <Button mnemonicParsing="false" onAction="#onSalir" text="Salir" />
    </children>
 </VBox>

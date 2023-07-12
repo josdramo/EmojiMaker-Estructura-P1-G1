@@ -47,9 +47,14 @@ public class App extends Application {
         
         loadScenes();
         
-        stage.setTitle("Inicia sesión");
-        stage.setScene(authScene);
+        switchToAuth();
+        
         stage.show();
+    }
+    
+    public void switchToAuth() {
+        primaryStage.setTitle("Inicia sesión");
+        primaryStage.setScene(authScene);
     }
     
     public void switchToMenuPrincipal() {
@@ -66,6 +71,12 @@ public class App extends Application {
         System.out.println("creando sesión");
         
         switchToMenuPrincipal();
+    }
+    
+    public void destroySession() {
+        System.out.println("cerrar sesión");
+        
+        switchToAuth();
     }
 
     public void openCreateEmoticonModal() {

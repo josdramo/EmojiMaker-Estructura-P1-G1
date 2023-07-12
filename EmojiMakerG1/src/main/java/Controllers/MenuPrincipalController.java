@@ -25,6 +25,10 @@ public class MenuPrincipalController {
     public void onConsultarEmojis() {
         app.switchToConsultarEmojis();
     }
+    
+    public void onSalir() {
+        app.destroySession();
+    }
 
     public void setApp(App app) {
         this.app = app;
