@@ -10,6 +10,6 @@ import java.io.Serializable;
  *
  * @author infrative
  */
-public class Profile implements Serializable {
-
+public class Model implements Serializable {
+    
 }

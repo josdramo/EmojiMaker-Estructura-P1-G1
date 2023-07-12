@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Dell
  */
-public class Usuario implements Serializable {
+public class Usuario extends Model {
     private String username;
     private String password;
 

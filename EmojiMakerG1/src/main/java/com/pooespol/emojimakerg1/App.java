@@ -77,6 +77,7 @@ public class App extends Application {
         System.out.println("cerrar sesión");
         
         loadScenes();
+        
         switchToAuth();
     }
 

@@ -4,12 +4,16 @@
  */
 package Modelos;
 
-import java.io.Serializable;
+import javafx.scene.image.Image;
 
 /**
  *
  * @author infrative
  */
-public class Profile implements Serializable {
+public class Mirada extends EmojiComponent {
 
+    public Mirada(Image image) {
+        super(image);
+    }
+    
 }
