@@ -6,6 +6,7 @@ package Controllers;
 
 import Datos.LeerArchivos;
 import TDAS.ListaCircularDoble;
+import com.pooespol.emojimakerg1.App;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +25,8 @@ import javafx.scene.input.MouseEvent;
  * @author infrative
  */
 public class CreateEmoticonController implements Initializable{
+    
+    private App app;
 
     ListaCircularDoble<String> rostros = LeerArchivos.listaR();
     ListaCircularDoble<String> ojos = LeerArchivos.listaO();
@@ -333,4 +336,9 @@ public class CreateEmoticonController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         
     }
+
+    public void setApp(App app) {
+        this.app = app;
+    }
+    
 }
