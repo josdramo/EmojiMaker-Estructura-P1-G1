@@ -10,7 +10,7 @@ import com.pooespol.emojimakerg1.App;
  *
  * @author infrative
  */
-public class VerEmojisController {
+public class ConsultarEmojisController {
     private App app;
     
     public void onVolverAlMenu() {

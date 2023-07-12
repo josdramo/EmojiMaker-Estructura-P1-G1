@@ -18,8 +18,8 @@ public class MenuPrincipalController {
     @FXML
     private VBox container;
     
-    public void onCrearEmoji() {
-        app.openCreateEmoticonModal();
+    public void onConsultarComponentes() {
+        // TODO
     }
     
     public void onConsultarEmojis() {
