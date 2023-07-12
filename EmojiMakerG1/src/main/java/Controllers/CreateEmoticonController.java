@@ -8,10 +8,13 @@ import Datos.LeerArchivos;
 import TDAS.ListaCircularDoble;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +23,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author infrative
  */
-public class CreateEmoticonController {
+public class CreateEmoticonController implements Initializable{
 
     ListaCircularDoble<String> rostros = LeerArchivos.listaR();
     ListaCircularDoble<String> ojos = LeerArchivos.listaO();
@@ -49,10 +52,14 @@ public class CreateEmoticonController {
 
     @FXML
     public ImageView imgC3;
+    
+    @FXML
+    public Label title;
 
     @FXML
     public void cargarR() {
         componente = "rostro";
+        title.setText("Seleccionando rostro: ");
         try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros))) {
             Image img1 = new Image(input);
             imgC1.setImage(img1);
@@ -77,6 +84,7 @@ public class CreateEmoticonController {
     @FXML
     public void cargarO() {
         componente = "ojos";
+        title.setText("Seleccionando ojos: ");
         try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos))) {
             Image img1 = new Image(input);
             imgC1.setImage(img1);
@@ -101,6 +109,7 @@ public class CreateEmoticonController {
     @FXML
     public void cargarB() {
         componente = "boca";
+        title.setText("Seleccionando boca: ");
         try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas))) {
             Image img1 = new Image(input);
             imgC1.setImage(img1);
@@ -123,43 +132,55 @@ public class CreateEmoticonController {
 
     @FXML
     public void elementoNext() {
-        Image im = imgC1.getImage();
-        String url = im.getUrl();
-        String[] datos = url.split("\\\\");
-        if (datos[datos.length - 2].equals("faces")) {
+        if (componente == null) {
+            String mensaje = "Este es un mensaje de aviso.";
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText(mensaje);
+            alert.showAndWait();
+        }
+        if (componente == "rostro") {
             indiceRostros++;
-        } else if (datos[datos.length - 2].equals("mouth")) {
-            indiceBocas++;
-        } else {
+        } else if (componente == "ojos") {
             indiceOjos++;
+        } else {
+            indiceBocas++;
         }
     }
 
     @FXML
     public void elementoPrev() {
-        Image im = imgC1.getImage();
-        String url = im.getUrl();
-        String[] datos = url.split("\\\\");
-        if (datos[datos.length - 2].equals("faces")) {
+        if (componente == null) {
+            String mensaje = "Este es un mensaje de aviso.";
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText(mensaje);
+            alert.showAndWait();
+        }
+        if (componente == "rostro") {
             int a = indiceRostros - 1;
             if (a < 0) {
                 indiceRostros = rostros.size() + a;
             } else {
                 indiceRostros--;
             }
-        } else if (datos[datos.length - 2].equals("mouth")) {
-            int a = indiceBocas - 1;
-            if (a < 0) {
-                indiceBocas = bocas.size() + a;
-            } else {
-                indiceBocas--;
-            }
-        } else {
+        } else if (componente == "ojos") {
             int a = indiceOjos - 1;
             if (a < 0) {
                 indiceOjos = ojos.size() + a;
             } else {
                 indiceOjos--;
+            }
+        } else {
+            int a = indiceBocas - 1;
+            if (a < 0) {
+                indiceBocas = bocas.size() + a;
+            } else {
+                indiceBocas--;
             }
         }
     }
@@ -167,7 +188,7 @@ public class CreateEmoticonController {
     @FXML
     void agregarPrevisualizacionIV1(MouseEvent event) {
         if (componente == null) {
-            String mensaje = "Este es un mensaje de aviso.";
+            String mensaje = "Selecciona un componente...";
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
@@ -230,5 +251,10 @@ public class CreateEmoticonController {
             Image imgPrevisualizacion1 = imgC3.getImage();
             imageViewBoca.setImage(imgPrevisualizacion1);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
     }
 }

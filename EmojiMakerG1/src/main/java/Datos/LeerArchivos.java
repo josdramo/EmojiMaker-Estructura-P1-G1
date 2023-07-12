@@ -34,6 +34,10 @@ public class LeerArchivos {
         File folder = new File(carpeta);
         File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
         
+        for(File i:archivos){
+            listaOjos.addLast(i.toString());
+        }
+        
         return listaOjos;
     }
     
@@ -44,6 +48,10 @@ public class LeerArchivos {
 
         File folder = new File(carpeta);
         File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
+        
+        for(File i:archivos){
+            listaBocas.addLast(i.toString());
+        }
         
         return listaBocas;
     }
