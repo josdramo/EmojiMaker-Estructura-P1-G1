@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ConsultarEmojisController">
+<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ConsultarEmojisController">
    <children>
       <ButtonBar>
         <buttons>
@@ -16,12 +16,12 @@
             <Insets right="10.0" top="10.0" />
          </VBox.margin>
       </ButtonBar>
-      <ListView prefHeight="348.0" prefWidth="500.0" />
+      <ListView fx:id="emojisListView" prefHeight="348.0" prefWidth="500.0" />
       <ButtonBar>
         <buttons>
-            <Button mnemonicParsing="false" text="Agregar" />
-          <Button mnemonicParsing="false" text="Editar" />
-            <Button mnemonicParsing="false" text="Eliminar" />
+            <Button mnemonicParsing="false" onAction="#onAgregar" text="Agregar" />
+          <Button mnemonicParsing="false" onAction="#onEditar" text="Editar" />
+            <Button mnemonicParsing="false" onAction="#onEliminar" text="Eliminar" />
         </buttons>
          <VBox.margin>
             <Insets bottom="10.0" />
