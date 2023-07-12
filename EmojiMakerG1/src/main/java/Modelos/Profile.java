@@ -4,12 +4,37 @@
  */
 package Modelos;
 
-import java.io.Serializable;
+import TDAS.List;
+import TDAS.ListaCircularDoble;
 
 /**
  *
  * @author infrative
  */
-public class Profile implements Serializable {
+public class Profile extends Model {
+    
+    private List<Emoticon> emoticones;
+    private Usuario usuario;
 
+    public Profile(Usuario usuario) {
+        this.usuario = usuario;
+        emoticones = new ListaCircularDoble();
+    }
+
+    public Profile(List<Emoticon> emoticones, Usuario usuario) {
+        this(usuario);
+        this.emoticones = emoticones;
+    }
+
+    public List<Emoticon> getEmoticones() {
+        return emoticones;
+    }
+
+    public void setEmoticones(List<Emoticon> emoticones) {
+        this.emoticones = emoticones;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
 }
