@@ -76,6 +76,7 @@ public class App extends Application {
     public void destroySession() {
         System.out.println("cerrar sesión");
         
+        loadScenes();
         switchToAuth();
     }
 
