@@ -25,7 +25,7 @@ public class Serializator {
             }
         } catch (IOException e) {
             System.out.println("[ERROR] Serialization.serialize");
-            // e.printStackTrace();
+            e.printStackTrace();
         }
     }
     

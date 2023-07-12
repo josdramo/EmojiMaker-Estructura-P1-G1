@@ -4,12 +4,14 @@
  */
 package TDAS;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  * @param <E>
  */
-public interface List<E> {
+public interface List<E> extends Serializable {
     
     public int size();
 

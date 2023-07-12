@@ -4,10 +4,16 @@
  */
 package Controllers;
 
+import Comparators.ProfileComparator;
 import Comparators.UserComparator;
+import Datos.LeerArchivos;
+import Enums.EmojiComponentType;
 import Modelos.Profile;
 import Modelos.Usuario;
+import TDAS.ListaCircularDoble;
 import com.pooespol.emojimakerg1.App;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,13 +45,26 @@ public class AuthController {
         if (!emptyCredentials) {
             Usuario usuario = new Usuario(nombre, pass);
 
-            TreeSet<Usuario> usuarios = new TreeSet(new UserComparator());
-            usuarios.addAll(App.usuarios);
+            TreeSet<Profile> perfiles = new TreeSet(new ProfileComparator());
+            
+            perfiles.addAll(App.perfiles);
 
-            Boolean authSuccess = usuarios.contains(usuario);
-
+            Boolean authSuccess = perfiles.contains(new Profile(usuario));
+            
             if (authSuccess) {
-                app.createSession(usuario);
+                Profile perfil = null;
+                
+                for (Profile p : perfiles) {
+                    UserComparator userComparator = new UserComparator();
+                    
+                    if (userComparator.compare(usuario, p.getUsuario()) == 0) {
+                        perfil = p;
+                    }
+                }
+                
+                if (perfil != null) {
+                    app.createSession(perfil);
+                }
             }
 
             if (!authSuccess) {
@@ -76,7 +95,7 @@ public class AuthController {
         
         if (!emptyCredentials) {
             Usuario usuario = new Usuario(nombre, pass);
-            Boolean alreadyRegistered = App.usuarios.contains(usuario);
+            Boolean alreadyRegistered = App.perfiles.contains(new Profile(usuario));
 
             if (alreadyRegistered) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -86,11 +105,17 @@ public class AuthController {
             }
 
             if (!alreadyRegistered) {
-                App.usuarios.add(usuario);
+                Map<EmojiComponentType, ListaCircularDoble<String>> componentes = new HashMap();
                 
-                Profile profile = new Profile(usuario);
+                componentes.put(EmojiComponentType.FACE, LeerArchivos.listaR());
+                componentes.put(EmojiComponentType.MIRADA, LeerArchivos.listaO());
+                componentes.put(EmojiComponentType.MOUTH, LeerArchivos.listaB());
                 
-                app.createSession(usuario);
+                Profile profile = new Profile(usuario, componentes);
+                
+                App.perfiles.add(profile);
+                
+                app.createSession(profile);
             }
         }
         

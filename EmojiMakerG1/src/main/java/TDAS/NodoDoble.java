@@ -4,12 +4,14 @@
  */
 package TDAS;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  * @param <E>
  */
-public class NodoDoble<E> {
+public class NodoDoble<E> implements Serializable {
     private E element;
     private NodoDoble<E> next;
     private NodoDoble<E> prev;

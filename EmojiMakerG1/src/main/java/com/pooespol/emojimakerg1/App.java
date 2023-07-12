@@ -1,14 +1,12 @@
 package com.pooespol.emojimakerg1;
 
-import Comparators.UserByNameComparator;
-import Comparators.UserComparator;
+import Comparators.ProfileByNameComparator;
 import Controllers.AuthController;
 import Controllers.MenuPrincipalController;
 import Controllers.ConsultarEmojisController;
 import Controllers.CreateEmoticonController;
 import Datos.Serializator;
 import Modelos.Profile;
-import Modelos.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,10 +31,10 @@ public class App extends Application {
     
     private Profile profile;
     
-    public static TreeSet<Usuario> usuarios;
+    public static TreeSet<Profile> perfiles;
     
     public static void main(String[] args) {
-        usuarios = deserializeUsuarios();
+        perfiles = deserializePerfiles();
         
         launch();
     }
@@ -46,7 +44,7 @@ public class App extends Application {
         primaryStage = stage;
         
         primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
-            Serializator.serialize(usuarios, "usuarios.se");
+            Serializator.serialize(perfiles, "perfiles.se");
         });
         
         loadScenes();
@@ -71,12 +69,12 @@ public class App extends Application {
         primaryStage.setTitle("Consultar Emojis");
     }
     
-    public void createSession(Usuario usuario) {
+    public void createSession(Profile profile) {
         System.out.println("creando sesión");
+        this.profile = profile;
+        
         
         switchToMenuPrincipal();
-        
-        
         
          // TODO: Crear perfil
     }
@@ -85,6 +83,8 @@ public class App extends Application {
         System.out.println("cerrar sesión");
         
         loadScenes();
+        
+        this.profile = null;
         
         switchToAuth();
     }
@@ -133,14 +133,14 @@ public class App extends Application {
         }
     }
     
-    private static TreeSet<Usuario> deserializeUsuarios() {
-        TreeSet<Usuario> usuariosDesearilizados = Serializator.deserialize("usuarios.se");
+    private static TreeSet<Profile> deserializePerfiles() {
+        TreeSet<Profile> perfilesDeserializados = Serializator.deserialize("perfiles.se");
         
-        if (usuariosDesearilizados == null) {
-            usuariosDesearilizados = new TreeSet(new UserByNameComparator());
+        if (perfilesDeserializados == null) {
+            perfilesDeserializados = new TreeSet(new ProfileByNameComparator());
         }
         
-        return usuariosDesearilizados;
+        return new TreeSet(new ProfileByNameComparator());
     }
 
     public Profile getProfile() {
