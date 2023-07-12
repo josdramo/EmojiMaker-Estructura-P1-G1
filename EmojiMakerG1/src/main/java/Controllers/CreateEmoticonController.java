@@ -66,19 +66,37 @@ public class CreateEmoticonController implements Initializable{
         } catch (IOException e) {
 
         }
-        try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros + 1))) {
+        if(indiceOjos+1>=rostros.size()){
+            try ( FileInputStream input = new FileInputStream(rostros.get(rostros.size()-indiceRostros-1))) {
             Image img = new Image(input);
             imgC2.setImage(img);
-        } catch (IOException e) {
+            } catch (IOException e) {
 
+            }
+        }else{
+            try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros + 1))) {
+            Image img = new Image(input);
+            imgC2.setImage(img);
+            } catch (IOException e) {
+
+            }
         }
-        try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros + 2))) {
+        
+        if(indiceOjos+2>=rostros.size()){
+            try ( FileInputStream input = new FileInputStream(rostros.get(rostros.size()-indiceRostros))) {
             Image img = new Image(input);
             imgC3.setImage(img);
-        } catch (IOException e) {
+            } catch (IOException e) {
 
+            }
+        }else{
+            try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros + 2))) {
+            Image img = new Image(input);
+            imgC3.setImage(img);
+            } catch (IOException e) {
+
+            }
         }
-
     }
 
     @FXML
@@ -91,19 +109,37 @@ public class CreateEmoticonController implements Initializable{
         } catch (IOException e) {
 
         }
-        try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos + 1))) {
+        if(indiceOjos+1>=ojos.size()){
+            try ( FileInputStream input = new FileInputStream(ojos.get(ojos.size()-indiceOjos-1))) {
             Image img = new Image(input);
             imgC2.setImage(img);
-        } catch (IOException e) {
+            } catch (IOException e) {
 
+            }
+        }else{
+            try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos + 1))) {
+            Image img = new Image(input);
+            imgC2.setImage(img);
+            } catch (IOException e) {
+
+            }
         }
-        try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos + 2))) {
+        
+        if(indiceOjos+2>=ojos.size()){
+            try ( FileInputStream input = new FileInputStream(ojos.get(ojos.size()-indiceOjos))) {
             Image img = new Image(input);
             imgC3.setImage(img);
-        } catch (IOException e) {
+            } catch (IOException e) {
 
+            }
+        }else{
+            try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos + 2))) {
+            Image img = new Image(input);
+            imgC3.setImage(img);
+            } catch (IOException e) {
+
+            }
         }
-
     }
 
     @FXML
@@ -116,17 +152,36 @@ public class CreateEmoticonController implements Initializable{
         } catch (IOException e) {
 
         }
-        try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas + 1))) {
+        if(indiceBocas+1>=bocas.size()){
+            try ( FileInputStream input = new FileInputStream(bocas.get(bocas.size()-indiceBocas-1))) {
             Image img = new Image(input);
             imgC2.setImage(img);
-        } catch (IOException e) {
+            } catch (IOException e) {
 
+            }
+        }else{
+            try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas + 1))) {
+            Image img = new Image(input);
+            imgC2.setImage(img);
+            } catch (IOException e) {
+
+            }
         }
-        try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas + 2))) {
+        
+        if(indiceBocas+2>=bocas.size()){
+            try ( FileInputStream input = new FileInputStream(bocas.get(bocas.size()-indiceBocas))) {
             Image img = new Image(input);
             imgC3.setImage(img);
-        } catch (IOException e) {
+            } catch (IOException e) {
 
+            }
+        }else{
+            try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas + 2))) {
+            Image img = new Image(input);
+            imgC3.setImage(img);
+            } catch (IOException e) {
+
+            }
         }
     }
 
@@ -142,11 +197,29 @@ public class CreateEmoticonController implements Initializable{
             alert.showAndWait();
         }
         if (componente == "rostro") {
-            indiceRostros++;
+            int a = indiceRostros + 1;
+            if (a >= rostros.size()) {
+                indiceRostros = a-rostros.size();
+            } else {
+                indiceRostros++;
+            }
+            cargarR();
         } else if (componente == "ojos") {
-            indiceOjos++;
-        } else {
-            indiceBocas++;
+            int a = indiceRostros + 1;
+            if (a >= ojos.size()) {
+                indiceOjos = a-ojos.size();
+            } else {
+                indiceOjos++;
+            }
+            cargarO();
+        } else if(componente =="boca"){
+            int a = indiceBocas + 1;
+            if (a >= bocas.size()) {
+                indiceBocas = a-bocas.size();
+            } else {
+                indiceBocas++;
+            }
+            cargarB();
         }
     }
 
@@ -168,6 +241,7 @@ public class CreateEmoticonController implements Initializable{
             } else {
                 indiceRostros--;
             }
+            cargarR();
         } else if (componente == "ojos") {
             int a = indiceOjos - 1;
             if (a < 0) {
@@ -175,6 +249,7 @@ public class CreateEmoticonController implements Initializable{
             } else {
                 indiceOjos--;
             }
+            cargarO();
         } else {
             int a = indiceBocas - 1;
             if (a < 0) {
@@ -182,6 +257,7 @@ public class CreateEmoticonController implements Initializable{
             } else {
                 indiceBocas--;
             }
+            cargarB();
         }
     }
 
@@ -211,7 +287,7 @@ public class CreateEmoticonController implements Initializable{
     @FXML
     void agregarPrevisualizacionIV2(MouseEvent event) {
         if (componente == null) {
-            String mensaje = "Este es un mensaje de aviso.";
+            String mensaje = "Selecciona un componente...";
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
@@ -234,7 +310,7 @@ public class CreateEmoticonController implements Initializable{
     @FXML
     void agregarPrevisualizacionIV3(MouseEvent event) {
         if (componente == null) {
-            String mensaje = "Este es un mensaje de aviso.";
+            String mensaje = "Selecciona un componente...";
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
