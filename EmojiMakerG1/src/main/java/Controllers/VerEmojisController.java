@@ -5,29 +5,19 @@
 package Controllers;
 
 import com.pooespol.emojimakerg1.App;
-import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 
 /**
  *
  * @author infrative
  */
-public class MenuPrincipalController {
+public class VerEmojisController {
     private App app;
     
-    @FXML
-    private VBox container;
-    
-    public void onCrearEmoji() {
-        app.openCreateEmoticonModal();
-    }
-    
-    public void onConsultarEmojis() {
-        app.switchToConsultarEmojis();
+    public void onVolverAlMenu() {
+        app.switchToMenuPrincipal();
     }
 
     public void setApp(App app) {
         this.app = app;
     }
-    
 }
