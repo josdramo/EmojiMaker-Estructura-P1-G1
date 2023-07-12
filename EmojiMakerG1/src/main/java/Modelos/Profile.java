@@ -29,7 +29,7 @@ public class Profile extends Model {
         this.emoticones = emoticones;
     }
     
-    public Profile(Usuario usuario, Map<EmojiComponentType, ListaCircularDoble<EmojiComponent>> componentes) {
+    public Profile(Usuario usuario, Map<EmojiComponentType, ListaCircularDoble<String>> componentes) {
         this(usuario);
         this.componentes = componentes;
     }
@@ -46,7 +46,7 @@ public class Profile extends Model {
         return usuario;
     }
 
-    public Map<EmojiComponentType, ListaCircularDoble<EmojiComponent>> getComponentes() {
+    public Map<EmojiComponentType, ListaCircularDoble<String>> getComponentes() {
         return componentes;
     }
     
