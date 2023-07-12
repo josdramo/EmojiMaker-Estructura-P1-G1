@@ -37,6 +37,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -44,7 +45,13 @@
    <children>
       <Label fx:id="title" text="Seleccionando" />
       <Button fx:id="deshacerButton" mnemonicParsing="false" text="Deshacer" />
-      <ImageView fx:id="emojiImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="imageViewRostro" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageViewOjos" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageViewBoca" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
             <Button fx:id="rostroButton" mnemonicParsing="false" onAction="#cargarR" text="ROSTRO">
@@ -67,9 +74,9 @@
       <HBox alignment="CENTER" spacing="10.0">
          <children>
             <Button fx:id="prevButton" mnemonicParsing="false" onAction="#elementoPrev" text="Prev" />
-            <ImageView fx:id="imgC1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgC2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgC3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgC1" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV1" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgC2" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV2" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgC3" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV3" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#elementoNext" text="nEXt" />
          </children>
          <VBox.margin>
