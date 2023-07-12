@@ -3,10 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuPrincipalController">
+<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuPrincipalController">
    <children>
       <Button mnemonicParsing="false" onAction="#onConsultarEmojis" text="Consultar Emojis" />
-      <Button mnemonicParsing="false" onAction="#onConsultarComponentes" text="Consultar Components" />
+      <Button mnemonicParsing="false" onAction="#onConsultarComponentes" text="Modificar Componentes" />
       <Button mnemonicParsing="false" onAction="#onSalir" text="Salir" />
    </children>
 </VBox>

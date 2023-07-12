@@ -5,6 +5,7 @@ import Controllers.AuthController;
 import Controllers.MenuPrincipalController;
 import Controllers.ConsultarEmojisController;
 import Controllers.CreateEmoticonController;
+import Controllers.ModificacionComponenteController;
 import Datos.Serializator;
 import Modelos.Profile;
 import javafx.application.Application;
@@ -26,6 +27,7 @@ public class App extends Application {
     private Scene menuPrincipalScene;
     private Scene createEmoticonScene;
     private Scene consultarEmojiScene;
+    private Scene modificarComponenteScene;
     
     private Stage primaryStage;
     
@@ -69,6 +71,11 @@ public class App extends Application {
         primaryStage.setTitle("Consultar Emojis");
     }
     
+    public void switchToModificacionComponente(){
+        primaryStage.setScene(modificarComponenteScene);
+        primaryStage.setTitle("Añadir / Eliminar componentes");
+    }
+    
     public void createSession(Profile profile) {
         System.out.println("creando sesión");
         this.profile = profile;
@@ -107,26 +114,31 @@ public class App extends Application {
             FXMLLoader menuLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/menuPrincipal.fxml"));
             FXMLLoader createEmoticonLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/createEmoticon.fxml"));
             FXMLLoader consultarEmojisLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/consultarEmojis.fxml"));
+            FXMLLoader modificarComponenteLoader = new FXMLLoader(getClass().getClassLoader().getResource("views/modificacionComponente.fxml"));
             
             Parent auth = authLoader.load();
             Parent menu = menuLoader.load();
             Parent createEmoticon = createEmoticonLoader.load();
             Parent verEmojis = consultarEmojisLoader.load();
+            Parent modificarComponente = modificarComponenteLoader.load();
             
             AuthController authController = authLoader.getController();
             MenuPrincipalController menuPrincipalController = menuLoader.getController();
             ConsultarEmojisController verEmojisController = consultarEmojisLoader.getController();
             CreateEmoticonController createEmoticonController = createEmoticonLoader.getController();
+            ModificacionComponenteController  modificacionComponenteController = modificarComponenteLoader.getController();
             
             authController.setApp(this);
             menuPrincipalController.setApp(this);
             verEmojisController.setApp(this);
             createEmoticonController.setApp(this);
+            modificacionComponenteController.setApp(this);
             
             authScene = new Scene(auth);
             menuPrincipalScene = new Scene(menu);
             createEmoticonScene = new Scene(createEmoticon);
             consultarEmojiScene = new Scene(verEmojis);
+            modificarComponenteScene = new Scene(modificarComponente);
             
         } catch (IOException e) {
             System.out.println(e.getMessage());

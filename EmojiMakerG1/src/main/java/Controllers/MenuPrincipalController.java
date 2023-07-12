@@ -28,26 +28,7 @@ public class MenuPrincipalController {
 
     @FXML
     void onConsultarComponentes(ActionEvent event) {
-        String rutaBaseProyecto = System.getProperty("user.dir");
-        String rutaCarpetaDestino = rutaBaseProyecto + "/src/main/resources/images";
-
-        File carpetaDestino = new File(rutaCarpetaDestino);
-        FileChooser archivoEscogido = new FileChooser();
-
-        ExtensionFilter filtroPNG = new ExtensionFilter("Archivos PNG", "*.png");
-        archivoEscogido.getExtensionFilters().add(filtroPNG);
-
-        File archivoImagen = archivoEscogido.showOpenDialog(null);
-        if (archivoImagen != null) {
-            try{
-             Path rutaDestino = carpetaDestino.toPath().resolve(archivoImagen.getName());
-
- 
-            Files.copy(archivoImagen.toPath(), rutaDestino, StandardCopyOption.REPLACE_EXISTING);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+        app.switchToModificacionComponente();
     }
 
     public void onConsultarEmojis() {
