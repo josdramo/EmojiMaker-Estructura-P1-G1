@@ -4,30 +4,53 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="355.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthController">
+<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="355.0" spacing="10.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthController">
    <children>
-      <Label text="Username" />
+      <ImageView fitHeight="249.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background_sesion.jpg" />
+         </image>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ImageView>
+      <Label text="Username">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
       <TextField fx:id="usernameField">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </TextField>
-      <Label text="Password" />
+      <Label text="Password">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
       <TextField fx:id="passwordField">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </TextField>
-      <HBox alignment="CENTER" spacing="20.0">
+      <HBox alignment="CENTER" spacing="70.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#onLogin" text="Iniciar sesion" />
-            <Button mnemonicParsing="false" onMouseClicked="#onRegister" text="Registrar" />
+            <Button mnemonicParsing="false" onMouseClicked="#onLogin" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #7F0CE5;" text="Iniciar sesión" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#onRegister" prefHeight="39.0" prefWidth="95.0" style="-fx-background-color: #7F0CE5;" text="Registrarse" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
          </children>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
    </children>

@@ -24,6 +24,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -119,6 +124,11 @@ public class ModificacionComponenteController {
             });
         }
         Scene scene = new Scene(gridPane, 800, 700);
+        Image img = new Image("src/main/resources/views/fondo_ventanas.jpg");
+        BackgroundImage bImg = new BackgroundImage(img,BackgroundRepeat.NO_REPEAT, 
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background bGround = new Background(bImg);
+        gridPane.setBackground(bGround);
         stage.setTitle("Eliminar rostros");
         stage.setScene(scene);
         stage.show();
