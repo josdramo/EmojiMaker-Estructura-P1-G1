@@ -15,6 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -70,10 +72,10 @@ public class ModificacionComponenteController {
     }
 
     @FXML
-    void anadirRostro(ActionEvent event) {
-        directorioEspecifico = "faces";
+    void anadirRostro(ActionEvent event) {  
+        directorioEspecifico = "faces";     
         app.getProfile().getComponentes().get(EmojiComponentType.FACE).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
-    }
+    }   
 
     @FXML
     void eliminarBoca(ActionEvent event) {
@@ -81,10 +83,14 @@ public class ModificacionComponenteController {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         Label label = new Label("Selecciona el emoji para borrar un componente de boca");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 25;");
         gridPane.add(label, 0, 0, 6, 1);
         int column = 0;
-        int row = 0;
+        int row = 2;
 
+        GridPane.setHalignment(label, HPos.CENTER);
+        GridPane.setValignment(label, VPos.CENTER);
+        
         for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).size(); i++) {
             String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).get(i);
 
@@ -95,7 +101,7 @@ public class ModificacionComponenteController {
             gridPane.add(imageView, column, row);
 
             column++;
-            if (column == 6) {
+            if (column == 7) {
                 column = 0;
                 row++;
             }
@@ -112,7 +118,7 @@ public class ModificacionComponenteController {
             eliminarRostro(event);
             });
         }
-        Scene scene = new Scene(gridPane, 700, 700);
+        Scene scene = new Scene(gridPane, 800, 700);
         stage.setTitle("Eliminar rostros");
         stage.setScene(scene);
         stage.show();
@@ -124,9 +130,10 @@ public class ModificacionComponenteController {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         Label label = new Label("Selecciona el emoji para borrar un componente de ojos");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 25;");
         gridPane.add(label, 0, 0, 6, 1);
         int column = 0;
-        int row = 0;
+        int row = 2;
 
         for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).size(); i++) {
             String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).get(i);
@@ -138,7 +145,7 @@ public class ModificacionComponenteController {
             gridPane.add(imageView, column, row);
 
             column++;
-            if (column == 6) {
+            if (column == 7) {
                 column = 0;
                 row++;
             }
@@ -155,7 +162,7 @@ public class ModificacionComponenteController {
             eliminarRostro(event);
             });
         }
-        Scene scene = new Scene(gridPane, 700, 700);
+        Scene scene = new Scene(gridPane, 800, 700);
         stage.setTitle("Eliminar rostros");
         stage.setScene(scene);
         stage.show();
@@ -167,9 +174,10 @@ public class ModificacionComponenteController {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         Label label = new Label("Selecciona el emoji para borrar un componente de rostros");
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 25;");
         gridPane.add(label, 0, 0, 6, 1);
         int column = 0;
-        int row = 0;
+        int row = 2;
 
         for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.FACE).size(); i++) {
             String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.FACE).get(i);
@@ -181,7 +189,7 @@ public class ModificacionComponenteController {
             gridPane.add(imageView, column, row);
 
             column++;
-            if (column == 6) {
+            if (column == 7) {
                 column = 0;
                 row++;
             }
@@ -198,7 +206,7 @@ public class ModificacionComponenteController {
             eliminarRostro(event);
             });
         }
-        Scene scene = new Scene(gridPane, 700, 700);
+        Scene scene = new Scene(gridPane, 800, 700);
         stage.setTitle("Eliminar rostros");
         stage.setScene(scene);
         stage.show();
@@ -221,9 +229,12 @@ public class ModificacionComponenteController {
         FileChooser.ExtensionFilter filtroPNG = new FileChooser.ExtensionFilter("Archivos PNG", "*.png");
         archivoEscogido.getExtensionFilters().add(filtroPNG);
 
-        archivoEscogido.showOpenDialog(null);
-       
-        return archivoEscogido.toString();
+        File archivoSeleccionado = archivoEscogido.showOpenDialog(null);
+        if (archivoSeleccionado != null) {
+        String rutaArchivoSeleccionado = archivoSeleccionado.getAbsolutePath();
+        return rutaArchivoSeleccionado;
+    }
+        return null;
     }
 
     public void setApp(App app) {
