@@ -21,6 +21,12 @@
             <version>13</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>19</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

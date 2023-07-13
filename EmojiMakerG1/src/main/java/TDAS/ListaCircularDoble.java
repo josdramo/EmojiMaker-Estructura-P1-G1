@@ -29,6 +29,7 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         }
     }
 
+    @Override
     public void add(T data) {
         Node<T> newNode = new Node<>(data);
 
@@ -49,6 +50,7 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         size++;
     }
 
+    @Override
     public void remove(T data) {
         if (head == null) {
             return;
@@ -98,14 +100,17 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         System.out.println();
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
     
+    @Override
     public T next(T data) {
         if (head == null) {
             return null;
@@ -124,6 +129,7 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         return null;
     }
     
+    @Override
     public T prev(T data) {
         if (head == null) {
             return null;
@@ -142,6 +148,7 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         return null;
     }
     
+    @Override
     public T get(int index) {
         if (head == null || index < 0 || index >= size) {
             return null;
@@ -156,6 +163,7 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         return currentNode.data;
     }
     
+    @Override
     public boolean contains(T data) {
         if (head == null) {
             return false;
@@ -174,6 +182,7 @@ public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
         return false;
     }
     
+    @Override
     public void removeByIndex(int index) {
         if (head == null || index < 0 || index >= size) {
             return;

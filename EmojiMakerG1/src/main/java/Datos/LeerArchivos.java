@@ -21,7 +21,7 @@ public class LeerArchivos {
         File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
         
         for(File i:archivos){
-            listaRostros.add(i.toString());
+            listaRostros.add(i.getAbsolutePath());
         }
         return listaRostros;
     }
@@ -35,7 +35,7 @@ public class LeerArchivos {
         File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
         
         for(File i:archivos){
-            listaOjos.add(i.toString());
+            listaOjos.add(i.getAbsolutePath());
         }
         
         return listaOjos;
@@ -50,7 +50,7 @@ public class LeerArchivos {
         File[] archivos = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(extension));
         
         for(File i:archivos){
-            listaBocas.add(i.toString());
+            listaBocas.add(i.getAbsolutePath());
         }
         
         return listaBocas;

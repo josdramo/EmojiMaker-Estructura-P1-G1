@@ -9,6 +9,7 @@ import java.io.Serializable;
 /**
  *
  * @author infrative
+ * @param <T>
  */
 public interface CircularList<T> extends List<T> {
     T next(T data);

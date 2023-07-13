@@ -34,28 +34,23 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateEmoticonController">
+<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateEmoticonController">
    <children>
-      <Label fx:id="title" prefHeight="17.0" prefWidth="182.0" text="Seleccionando:">
-         <VBox.margin>
-            <Insets right="400.0" />
-         </VBox.margin></Label>
-      <Button fx:id="deshacerButton" mnemonicParsing="false" text="Deshacer" />
+      <Button mnemonicParsing="false" text="Deshacer" />
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="imageViewRostro" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageViewOjos" fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="rostroImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="miradaImageView" fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <StackPane.margin>
                   <Insets bottom="40.0" />
                </StackPane.margin></ImageView>
-            <ImageView fx:id="imageViewBoca" fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="mouthImageView" fitHeight="70.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <StackPane.margin>
                   <Insets top="80.0" />
                </StackPane.margin></ImageView>
@@ -63,17 +58,17 @@
       </StackPane>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <Button fx:id="rostroButton" mnemonicParsing="false" onAction="#cargarR" text="ROSTRO">
+            <Button mnemonicParsing="false" onAction="#onMostrarRostros" text="ROSTRO">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="ojoButton" mnemonicParsing="false" onAction="#cargarO" text="OJOS">
+            <Button fx:id="ojoButton" mnemonicParsing="false" onAction="#onMostrarMiradas" text="OJOS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="bocaButton" mnemonicParsing="false" onAction="#cargarB" text="BOCA">
+            <Button fx:id="bocaButton" mnemonicParsing="false" onAction="#onMostrarMouths" text="BOCA">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -82,11 +77,9 @@
       </HBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="prevButton" mnemonicParsing="false" onAction="#elementoPrev" text="Prev" />
-            <ImageView fx:id="imgC1" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV1" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgC2" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV2" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgC3" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV3" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#elementoNext" text="nEXt" />
+            <Button mnemonicParsing="false" onAction="#onMoverComponentesALaIzquierda" text="&lt;" />
+            <HBox fx:id="componentsHBox" spacing="10.0" />
+            <Button mnemonicParsing="false" onAction="#onMoverComponentesALaDerecha" text="&gt;" />
          </children>
          <VBox.margin>
             <Insets />
@@ -94,8 +87,8 @@
       </HBox>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <Button mnemonicParsing="false" text="Guardar" />
-            <Button mnemonicParsing="false" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#onGuardar" text="Guardar" />
+            <Button mnemonicParsing="false" onAction="#onCancelar" text="Cancelar" />
          </children>
       </HBox>
    </children>
