@@ -39,12 +39,13 @@ public class Serializator {
             
             return object;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("[ERROR] Archivo deserializable no encontrado.");
             if (fileIn != null) {
                 try {
                     fileIn.close();
                 } catch (IOException e1) {
-                    e1.printStackTrace();
+                    //e1.printStackTrace();
                     // do nothing
                 }
             }
