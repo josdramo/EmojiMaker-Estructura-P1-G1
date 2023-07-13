@@ -83,7 +83,7 @@ public class CreateEmoticonController {
     }
     
     public void onCancelar() {
-        
+        app.switchToMenuPrincipal();
     }
     
     public void setApp(App app) {
