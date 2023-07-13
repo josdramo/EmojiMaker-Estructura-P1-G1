@@ -5,6 +5,7 @@
 package Controllers;
 
 import Enums.EmojiComponentType;
+import Modelos.Emoticon;
 import TDAS.CircularArray;
 import TDAS.CircularList;
 import TDAS.ListaCircularDoble;
@@ -39,28 +40,38 @@ public class CreateEmoticonController {
     @FXML
     private ImageView mouthImageView;
     
-    CircularList<String> componentes;
-    CircularArray<String> componentesMostrados;
+    private EmojiComponentType currentComponentType;
+    private CircularList<String> componentes;
+    private CircularArray<String> componentesMostrados;
+    private Emoticon emoticon;
+    
+    public void initialize() {
+        emoticon = new Emoticon();
+    }
     
     public void onMostrarRostros() {
-        componentes = app.getProfile().getComponentes().get(EmojiComponentType.FACE);
+        currentComponentType = EmojiComponentType.FACE;
+        
+        componentes = app.getProfile().getComponentes().get(currentComponentType);
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
     }
     
     public void onMostrarMiradas() {
-        componentes = app.getProfile().getComponentes().get(EmojiComponentType.MIRADA);
+        currentComponentType = EmojiComponentType.MIRADA;
+        
+        componentes = app.getProfile().getComponentes().get(currentComponentType);
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
     }
     
     public void onMostrarMouths() {
-        componentes = app.getProfile().getComponentes().get(EmojiComponentType.MOUTH);
+        currentComponentType = EmojiComponentType.MOUTH;
+        
+        componentes = app.getProfile().getComponentes().get(currentComponentType);
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
     }
-    
-    
     
     public void onMoverComponentesALaDerecha() {
         componentesMostrados.addLast(
@@ -109,8 +120,16 @@ public class CreateEmoticonController {
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);
             
+            imageView.setOnMouseClicked((e) -> {
+                updateEmoticon(i);
+            });
+            
             componentsHBox.getChildren().add(imageView);
         }
+    }
+    
+    final private void updateEmoticon(int indiceComponenteMostrado) {
+        
     }
 }
 
