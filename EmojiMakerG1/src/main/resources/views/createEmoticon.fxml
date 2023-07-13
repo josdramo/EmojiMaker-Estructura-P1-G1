@@ -39,6 +39,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateEmoticonController">
@@ -46,10 +47,17 @@
       <Label fx:id="title" prefHeight="17.0" prefWidth="182.0" text="Seleccionando:">
          <VBox.margin>
             <Insets right="400.0" />
-         </VBox.margin></Label>
-      <Button fx:id="deshacerButton" mnemonicParsing="false" text="Deshacer" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <Button fx:id="deshacerButton" mnemonicParsing="false" style="-fx-background-color: A7B6A3;" text="Deshacer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="188.0" opacity="0.65" stroke="#e89d42" strokeType="INSIDE" width="185.0" />
             <ImageView fx:id="imageViewRostro" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageViewOjos" fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <StackPane.margin>
@@ -63,17 +71,17 @@
       </StackPane>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <Button fx:id="rostroButton" mnemonicParsing="false" onAction="#cargarR" text="ROSTRO">
+            <Button fx:id="rostroButton" mnemonicParsing="false" onAction="#cargarR" style="-fx-background-color: E0B249; -fx-border-color: 000000; -fx-border-width: 2px; -fx-border-radius: 5px;" text="ROSTRO">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="ojoButton" mnemonicParsing="false" onAction="#cargarO" text="OJOS">
+            <Button fx:id="ojoButton" mnemonicParsing="false" onAction="#cargarO" style="-fx-background-color: E0B249;" text="OJOS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="bocaButton" mnemonicParsing="false" onAction="#cargarB" text="BOCA">
+            <Button fx:id="bocaButton" mnemonicParsing="false" onAction="#cargarB" style="-fx-background-color: E0B249;" text="BOCA">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -82,11 +90,17 @@
       </HBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="prevButton" mnemonicParsing="false" onAction="#elementoPrev" text="Prev" />
+            <Button fx:id="prevButton" mnemonicParsing="false" onAction="#elementoPrev" style="-fx-background-color: #187FC2;" text="&lt;&lt;" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
             <ImageView fx:id="imgC1" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV1" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgC2" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV2" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgC3" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#agregarPrevisualizacionIV3" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#elementoNext" text="nEXt" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#elementoNext" style="-fx-background-color: #187FC2;" text="&gt;&gt;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </children>
          <VBox.margin>
             <Insets />
@@ -94,8 +108,14 @@
       </HBox>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <Button mnemonicParsing="false" text="Guardar" />
-            <Button mnemonicParsing="false" text="Cancelar" />
+            <Button mnemonicParsing="false" style="-fx-background-color: A7B6A3;" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: A7B6A3;" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
