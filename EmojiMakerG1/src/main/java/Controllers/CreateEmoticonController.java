@@ -53,6 +53,7 @@ public class CreateEmoticonController {
         currentComponentType = EmojiComponentType.FACE;
         
         componentes = app.getProfile().getComponentes().get(currentComponentType);
+        
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
     }
@@ -119,17 +120,39 @@ public class CreateEmoticonController {
             
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);
+            imageView.setPickOnBounds(true);
             
+            final int indiceComponenteSeleccionado = i;
             imageView.setOnMouseClicked((e) -> {
-                //updateEmoticon(i);
+                this.updateEmoticon(indiceComponenteSeleccionado);
             });
             
             componentsHBox.getChildren().add(imageView);
         }
     }
     
-    private void updateEmoticon(int indiceComponenteMostrado) {
+    private void updateEmoticon(int indiceComponente) {
+        emoticon.updateComponent(currentComponentType, componentesMostrados.get(indiceComponente));
         
+        refreshEmoticonImageView();
+    }
+    
+    private void refreshEmoticonImageView() {
+        String miradaUrl = emoticon.getComponent(EmojiComponentType.MIRADA);
+        String rostroUrl = emoticon.getComponent(EmojiComponentType.FACE);
+        String mouthUrl = emoticon.getComponent(EmojiComponentType.MOUTH);
+        
+        if (miradaUrl != null) {
+            miradaImageView.setImage(new Image(miradaUrl));
+        }
+        
+        if (rostroUrl != null) {
+            rostroImageView.setImage(new Image(rostroUrl));
+        }
+        
+        if (mouthUrl != null) {
+            mouthImageView.setImage(new Image(mouthUrl));
+        }
     }
 }
 
