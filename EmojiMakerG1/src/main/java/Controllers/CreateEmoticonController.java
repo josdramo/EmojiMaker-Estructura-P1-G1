@@ -36,6 +36,10 @@ public class CreateEmoticonController implements Initializable{
     int indiceOjos = 0;
     int indiceBocas = 0;
 
+    String componentePath1="";
+    String componentePath2="";
+    String componentePath3="";
+    
     private String componente;
 
     @FXML
@@ -64,6 +68,7 @@ public class CreateEmoticonController implements Initializable{
         componente = "rostro";
         title.setText("Seleccionando rostro: ");
         try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros))) {
+            componentePath1=rostros.get(indiceRostros);
             Image img1 = new Image(input);
             imgC1.setImage(img1);
         } catch (IOException e) {
@@ -71,15 +76,17 @@ public class CreateEmoticonController implements Initializable{
         }
         if(indiceOjos+1>=rostros.size()){
             try ( FileInputStream input = new FileInputStream(rostros.get(rostros.size()-indiceRostros-1))) {
-            Image img = new Image(input);
-            imgC2.setImage(img);
+                componentePath2=rostros.get(rostros.size()-indiceRostros-1);
+                Image img = new Image(input);
+                imgC2.setImage(img);
             } catch (IOException e) {
 
             }
         }else{
             try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros + 1))) {
-            Image img = new Image(input);
-            imgC2.setImage(img);
+                componentePath2=rostros.get(indiceRostros + 1);
+                Image img = new Image(input);
+                imgC2.setImage(img);
             } catch (IOException e) {
 
             }
@@ -87,6 +94,7 @@ public class CreateEmoticonController implements Initializable{
         
         if(indiceOjos+2>=rostros.size()){
             try ( FileInputStream input = new FileInputStream(rostros.get(rostros.size()-indiceRostros))) {
+                componentePath3=rostros.get(rostros.size()-indiceRostros);
             Image img = new Image(input);
             imgC3.setImage(img);
             } catch (IOException e) {
@@ -94,6 +102,7 @@ public class CreateEmoticonController implements Initializable{
             }
         }else{
             try ( FileInputStream input = new FileInputStream(rostros.get(indiceRostros + 2))) {
+                componentePath3=rostros.get(indiceRostros + 2);
             Image img = new Image(input);
             imgC3.setImage(img);
             } catch (IOException e) {
@@ -107,6 +116,7 @@ public class CreateEmoticonController implements Initializable{
         componente = "ojos";
         title.setText("Seleccionando ojos: ");
         try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos))) {
+            componentePath1=ojos.get(indiceOjos);
             Image img1 = new Image(input);
             imgC1.setImage(img1);
         } catch (IOException e) {
@@ -114,6 +124,7 @@ public class CreateEmoticonController implements Initializable{
         }
         if(indiceOjos+1>=ojos.size()){
             try ( FileInputStream input = new FileInputStream(ojos.get(ojos.size()-indiceOjos-1))) {
+                componentePath2=rostros.get(ojos.size()-indiceOjos-1);
             Image img = new Image(input);
             imgC2.setImage(img);
             } catch (IOException e) {
@@ -121,6 +132,7 @@ public class CreateEmoticonController implements Initializable{
             }
         }else{
             try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos + 1))) {
+                componentePath2=ojos.get(indiceOjos + 1);
             Image img = new Image(input);
             imgC2.setImage(img);
             } catch (IOException e) {
@@ -130,6 +142,7 @@ public class CreateEmoticonController implements Initializable{
         
         if(indiceOjos+2>=ojos.size()){
             try ( FileInputStream input = new FileInputStream(ojos.get(ojos.size()-indiceOjos))) {
+                componentePath3=ojos.get(ojos.size()-indiceOjos);
             Image img = new Image(input);
             imgC3.setImage(img);
             } catch (IOException e) {
@@ -137,6 +150,7 @@ public class CreateEmoticonController implements Initializable{
             }
         }else{
             try ( FileInputStream input = new FileInputStream(ojos.get(indiceOjos + 2))) {
+                componentePath3=ojos.get(indiceOjos + 2);
             Image img = new Image(input);
             imgC3.setImage(img);
             } catch (IOException e) {
@@ -150,6 +164,7 @@ public class CreateEmoticonController implements Initializable{
         componente = "boca";
         title.setText("Seleccionando boca: ");
         try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas))) {
+            componentePath1=bocas.get(indiceBocas);
             Image img1 = new Image(input);
             imgC1.setImage(img1);
         } catch (IOException e) {
@@ -157,6 +172,7 @@ public class CreateEmoticonController implements Initializable{
         }
         if(indiceBocas+1>=bocas.size()){
             try ( FileInputStream input = new FileInputStream(bocas.get(bocas.size()-indiceBocas-1))) {
+                componentePath2=bocas.get(bocas.size()-indiceBocas-1);
             Image img = new Image(input);
             imgC2.setImage(img);
             } catch (IOException e) {
@@ -164,6 +180,7 @@ public class CreateEmoticonController implements Initializable{
             }
         }else{
             try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas + 1))) {
+                componentePath2=bocas.get(indiceBocas + 1);
             Image img = new Image(input);
             imgC2.setImage(img);
             } catch (IOException e) {
@@ -173,6 +190,7 @@ public class CreateEmoticonController implements Initializable{
         
         if(indiceBocas+2>=bocas.size()){
             try ( FileInputStream input = new FileInputStream(bocas.get(bocas.size()-indiceBocas))) {
+                componentePath3=bocas.get(bocas.size()-indiceBocas);
             Image img = new Image(input);
             imgC3.setImage(img);
             } catch (IOException e) {
@@ -180,6 +198,7 @@ public class CreateEmoticonController implements Initializable{
             }
         }else{
             try ( FileInputStream input = new FileInputStream(bocas.get(indiceBocas + 2))) {
+                componentePath3=bocas.get(indiceBocas + 2);
             Image img = new Image(input);
             imgC3.setImage(img);
             } catch (IOException e) {
