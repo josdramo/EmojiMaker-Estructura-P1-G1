@@ -99,23 +99,33 @@ public class ListaCircularDoble<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
+     if (index < 0 || index >= size()) {
+        throw new IndexOutOfBoundsException();
+    }
 
-        if (index == 0) {
-            return removeFirst();
-        } else if (index == size() - 1) {
-            return removeLast();
-        } else {
-            NodoDoble<E> nodoEliminar = first;
-            for (int i = 0; i < index; i++) {
-                nodoEliminar = nodoEliminar.getNext();
-            }
-            E element = nodoEliminar.getElement();
-            removeNode(nodoEliminar);
-            return element;
+    if (index == 0) {
+        return removeFirst();
+    } else if (index == size() - 1) {
+        return removeLast();
+    } else {
+        NodoDoble<E> nodoEliminar = first;
+        for (int i = 0; i < index; i++) {
+            nodoEliminar = nodoEliminar.getNext();
         }
+        E element = nodoEliminar.getElement();
+        NodoDoble<E> prevNode = nodoEliminar.getPrev();
+        NodoDoble<E> nextNode = nodoEliminar.getNext();
+        
+        if (nextNode != null) {
+            prevNode.setNext(nextNode);
+            nextNode.setPrev(prevNode);
+        } else {
+            prevNode.setNext(null);
+            last = prevNode;
+        }
+        
+        return element;
+    }
     }
 
     @Override
