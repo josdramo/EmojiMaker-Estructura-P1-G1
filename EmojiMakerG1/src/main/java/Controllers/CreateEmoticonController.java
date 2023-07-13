@@ -121,14 +121,14 @@ public class CreateEmoticonController {
             imageView.setFitHeight(50);
             
             imageView.setOnMouseClicked((e) -> {
-                updateEmoticon(i);
+                //updateEmoticon(i);
             });
             
             componentsHBox.getChildren().add(imageView);
         }
     }
     
-    final private void updateEmoticon(int indiceComponenteMostrado) {
+    private void updateEmoticon(int indiceComponenteMostrado) {
         
     }
 }
