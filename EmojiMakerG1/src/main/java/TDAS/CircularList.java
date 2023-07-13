@@ -4,6 +4,8 @@
  */
 package TDAS;
 
+import java.io.Serializable;
+
 /**
  *
  * @author infrative

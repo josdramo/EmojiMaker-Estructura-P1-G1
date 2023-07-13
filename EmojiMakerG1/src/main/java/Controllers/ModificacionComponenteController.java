@@ -5,6 +5,7 @@
 package Controllers;
 
 import static Datos.LeerArchivos.listaR;
+import Enums.EmojiComponentType;
 import TDAS.CircularList;
 import TDAS.ListaCircularDoble;
 import com.pooespol.emojimakerg1.App;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
 public class ModificacionComponenteController {
 
     Stage stage = new Stage();
-    private App app;
+    App app;
     private String directorioEspecifico;
 
     @FXML
@@ -59,81 +60,144 @@ public class ModificacionComponenteController {
     @FXML
     void anadirBoca(ActionEvent event) {
         directorioEspecifico = "mouth";
-        copiarArchivoEnCarpetaDeImagenes(directorioEspecifico);
+        app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
     }
 
     @FXML
     void anadirOjos(ActionEvent event) {
         directorioEspecifico = "eyes";
-        copiarArchivoEnCarpetaDeImagenes(directorioEspecifico);
+        app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
     }
 
     @FXML
     void anadirRostro(ActionEvent event) {
         directorioEspecifico = "faces";
-        copiarArchivoEnCarpetaDeImagenes(directorioEspecifico);
+        app.getProfile().getComponentes().get(EmojiComponentType.FACE).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
     }
 
     @FXML
     void eliminarBoca(ActionEvent event) {
-
-    }
-
-    @FXML
-    void eliminarOjos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void eliminarRostro(ActionEvent event) {
-        CircularList<String> listaRostros = listaR();
-
-// Crear un GridPane
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        Label label = new Label("Selecciona el emoji para borrar un componente de rostros");
-           gridPane.add(label, 0, 0, 6, 1);
-// Variables para controlar las posiciones en el GridPane
+        Label label = new Label("Selecciona el emoji para borrar un componente de boca");
+        gridPane.add(label, 0, 0, 6, 1);
         int column = 0;
         int row = 0;
 
-// Recorrer la lista de rutas de imágenes utilizando un bucle for tradicional
-        for (int i = 0; i < listaRostros.size(); i++) {
-            String rutaImagen = listaRostros.get(i);
+        for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).size(); i++) {
+            String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).get(i);
 
-            // Crear un ImageView para cada imagen
             ImageView imageView = new ImageView(new Image("file:" + rutaImagen));
-            imageView.setFitWidth(100); // Ancho deseado del ImageView
-            imageView.setPreserveRatio(true); // Mantener la relación de aspecto
+            imageView.setFitWidth(100);
+            imageView.setPreserveRatio(true);
 
-            // Agregar el ImageView al GridPane en la posición actual
             gridPane.add(imageView, column, row);
 
-            // Actualizar las posiciones en el GridPane
             column++;
             if (column == 6) {
                 column = 0;
                 row++;
             }
-            int index = i; // Guardar el índice actual en una variable final para utilizar en el evento
-        imageView.setOnMouseClicked(e -> {
-            // Eliminar el emoji de la lista
-            System.out.println(listaRostros);
-            listaRostros.removeByIndex(index);
+            int index = i;
+            imageView.setOnMouseClicked(e -> {
+            app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).removeByIndex(index);
             
-            // Mostrar un aviso de que el emoji fue eliminado
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText(null);
             alert.setContentText("El emoji seleccionado fue eliminado");
             alert.showAndWait();
             
-            // Actualizar el GridPane con los emojis restantes
-            eliminarRostro(event); // Llamar al método nuevamente para generar la nueva vista
-        });
+            eliminarRostro(event);
+            });
+        }
+        Scene scene = new Scene(gridPane, 700, 700);
+        stage.setTitle("Eliminar rostros");
+        stage.setScene(scene);
+        stage.show();
     }
-        // Crear la escena y mostrarla en el escenario
+
+    @FXML
+    void eliminarOjos(ActionEvent event) {
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        Label label = new Label("Selecciona el emoji para borrar un componente de ojos");
+        gridPane.add(label, 0, 0, 6, 1);
+        int column = 0;
+        int row = 0;
+
+        for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).size(); i++) {
+            String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).get(i);
+
+            ImageView imageView = new ImageView(new Image("file:" + rutaImagen));
+            imageView.setFitWidth(100);
+            imageView.setPreserveRatio(true);
+
+            gridPane.add(imageView, column, row);
+
+            column++;
+            if (column == 6) {
+                column = 0;
+                row++;
+            }
+            int index = i;
+            imageView.setOnMouseClicked(e -> {
+            app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).removeByIndex(index);
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("El emoji seleccionado fue eliminado");
+            alert.showAndWait();
+            
+            eliminarRostro(event);
+            });
+        }
+        Scene scene = new Scene(gridPane, 700, 700);
+        stage.setTitle("Eliminar rostros");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void eliminarRostro(ActionEvent event) {
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        Label label = new Label("Selecciona el emoji para borrar un componente de rostros");
+        gridPane.add(label, 0, 0, 6, 1);
+        int column = 0;
+        int row = 0;
+
+        for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.FACE).size(); i++) {
+            String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.FACE).get(i);
+
+            ImageView imageView = new ImageView(new Image("file:" + rutaImagen));
+            imageView.setFitWidth(100);
+            imageView.setPreserveRatio(true);
+
+            gridPane.add(imageView, column, row);
+
+            column++;
+            if (column == 6) {
+                column = 0;
+                row++;
+            }
+            int index = i;
+            imageView.setOnMouseClicked(e -> {
+            app.getProfile().getComponentes().get(EmojiComponentType.FACE).removeByIndex(index);
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("El emoji seleccionado fue eliminado");
+            alert.showAndWait();
+            
+            eliminarRostro(event);
+            });
+        }
         Scene scene = new Scene(gridPane, 700, 700);
         stage.setTitle("Eliminar rostros");
         stage.setScene(scene);
@@ -148,26 +212,18 @@ public class ModificacionComponenteController {
         app.switchToMenuPrincipal();
     }
 
-    public void copiarArchivoEnCarpetaDeImagenes(String directorioEspecifico) {
+    public String copiarArchivoEnCarpetaDeImagenes(String directorioEspecifico) {
         String rutaBaseProyecto = System.getProperty("user.dir");
         String rutaCarpetaDestino = rutaBaseProyecto + "/src/main/resources/images/" + directorioEspecifico;
 
-        File carpetaDestino = new File(rutaCarpetaDestino);
         FileChooser archivoEscogido = new FileChooser();
 
         FileChooser.ExtensionFilter filtroPNG = new FileChooser.ExtensionFilter("Archivos PNG", "*.png");
         archivoEscogido.getExtensionFilters().add(filtroPNG);
 
-        File archivoImagen = archivoEscogido.showOpenDialog(null);
-        if (archivoImagen != null) {
-            try {
-                Path rutaDestino = carpetaDestino.toPath().resolve(archivoImagen.getName());
-
-                Files.copy(archivoImagen.toPath(), rutaDestino, StandardCopyOption.REPLACE_EXISTING);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        archivoEscogido.showOpenDialog(null);
+       
+        return archivoEscogido.toString();
     }
 
     public void setApp(App app) {

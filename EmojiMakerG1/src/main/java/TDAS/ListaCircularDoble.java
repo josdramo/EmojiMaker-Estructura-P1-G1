@@ -4,17 +4,19 @@
  */
 package TDAS;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  * @param <T>
  */
-public class ListaCircularDoble<T> implements CircularList<T> {
+public class ListaCircularDoble<T> implements CircularList<T>, Serializable {
     
     private Node<T> head;
     private int size;
 
-    private static class Node<T> {
+    private static class Node<T> implements Serializable {
         T data;
         Node<T> prev;
         Node<T> next;
