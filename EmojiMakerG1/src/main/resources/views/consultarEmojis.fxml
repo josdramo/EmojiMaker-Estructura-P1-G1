@@ -5,12 +5,16 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ConsultarEmojisController">
+<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ConsultarEmojisController">
    <children>
       <ButtonBar>
         <buttons>
-          <Button mnemonicParsing="false" onAction="#onVolverAlMenu" text="Volver al menu" />
+          <Button mnemonicParsing="false" onAction="#onVolverAlMenu" style="-fx-background-color: A7B6A3;" text="Volver al menu">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
         </buttons>
          <VBox.margin>
             <Insets right="10.0" top="10.0" />
@@ -19,9 +23,18 @@
       <ListView fx:id="emojisListView" prefHeight="348.0" prefWidth="500.0" />
       <ButtonBar>
         <buttons>
-            <Button mnemonicParsing="false" onAction="#onAgregar" text="Agregar" />
-          <Button mnemonicParsing="false" onAction="#onEditar" text="Editar" />
-            <Button mnemonicParsing="false" onAction="#onEliminar" text="Eliminar" />
+            <Button mnemonicParsing="false" onAction="#onAgregar" style="-fx-background-color: A7B6A3;" text="Agregar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+          <Button mnemonicParsing="false" onAction="#onEditar" style="-fx-background-color: A7B6A3;" text="Editar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#onEliminar" style="-fx-background-color: A7B6A3;" text="Eliminar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
         </buttons>
          <VBox.margin>
             <Insets bottom="10.0" />
