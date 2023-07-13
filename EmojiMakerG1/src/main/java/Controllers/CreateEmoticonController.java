@@ -80,6 +80,7 @@ public class CreateEmoticonController {
         );
         
         actualizarComponentsHBox();
+        updateEmoticon(1);
     }
     
     public void onMoverComponentesALaIzquierda() {
@@ -88,6 +89,7 @@ public class CreateEmoticonController {
         );
         
         actualizarComponentsHBox();
+        updateEmoticon(1);
     }
     
     public void onGuardar() {
