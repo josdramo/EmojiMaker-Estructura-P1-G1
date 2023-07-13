@@ -4,271 +4,197 @@
  */
 package TDAS;
 
-import Excepciones.UnderflowException;
-import java.util.NoSuchElementException;
-
 /**
  *
  * @author Dell
- * @param <E>
+ * @param <T>
  */
-public class ListaCircularDoble<E> implements List<E> {
-
-    private NodoDoble<E> first;
-    private NodoDoble<E> last;
-
-    public ListaCircularDoble() {
-        this.first = null;
-        this.last = null;
-    }
-
-    @Override
-    public int size() {
-        int cont = 0;
-        NodoDoble<E> viajero;
-        for (viajero = first; viajero != null; viajero = viajero.getNext()) {
-            cont++;
-        }
-        return cont;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.first == null && this.last == null;
-    }
-
-    @Override
-    public void clear() {
-        first = null;
-        last = null;
-    }
-
-    @Override
-    public boolean addFirst(E element) {
-        if (element == null) {
-            return false;
-        }
-        NodoDoble<E> nodoNuevo = new NodoDoble<>(element);
-        nodoNuevo.setNext(this.first);
-        if (this.isEmpty()) {
-            this.last = nodoNuevo;
-        }
-        this.first = nodoNuevo;
-        return true;
-    }
-
-    @Override
-    public boolean addLast(E element) {
-        if (element == null) {
-            return false;
-        }
-        NodoDoble<E> nodoNuevo = new NodoDoble<>(element);
-        if (this.isEmpty()) {
-            this.first = nodoNuevo;
-        } else {
-            this.last.setNext(nodoNuevo);
-        }
-        this.last = nodoNuevo;
-        return true;
-    }
-
-    @Override
-    public E removeFirst() {
-        if (isEmpty()) {
-            throw new UnderflowException("No se puede remover elementos a una lista vacía");
-        }
-        E element = first.getElement();
-        first = first.getNext();
-        first.setPrev(last);
-        last.setNext(first);
-        return element;
-    }
-
-    @Override
-    public E removeLast() {
-        if (isEmpty()) {
-            throw new UnderflowException("No se puede remover elementos a una lista vacía");
-        }
-
-        E element = last.getElement();
-        last = last.getPrev();
-        last.setNext(first);
-        first.setPrev(last);
-        return element;
-    }
-
-    @Override
-    public E remove(int index) {
-     if (index < 0 || index >= size()) {
-        throw new IndexOutOfBoundsException();
-    }
-
-    if (index == 0) {
-        return removeFirst();
-    } else if (index == size() - 1) {
-        return removeLast();
-    } else {
-        NodoDoble<E> nodoEliminar = first;
-        for (int i = 0; i < index; i++) {
-            nodoEliminar = nodoEliminar.getNext();
-        }
-        E element = nodoEliminar.getElement();
-        NodoDoble<E> prevNode = nodoEliminar.getPrev();
-        NodoDoble<E> nextNode = nodoEliminar.getNext();
-        
-        if (nextNode != null) {
-            prevNode.setNext(nextNode);
-            nextNode.setPrev(prevNode);
-        } else {
-            prevNode.setNext(null);
-            last = prevNode;
-        }
-        
-        return element;
-    }
-    }
-
-    @Override
-    public E get(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        NodoDoble<E> nodoActual = first;
-        for (int i = 0; i < index; i++) {
-            nodoActual = nodoActual.getNext();
-        }
-        return nodoActual.getElement();
-    }
+public class ListaCircularDoble<T> implements CircularList<T> {
     
-    public NodoDoble<E> getNode(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
+    private Node<T> head;
+    private int size;
 
-        NodoDoble<E> nodoActual = first;
-        for (int i = 0; i < index; i++) {
-            nodoActual = nodoActual.getNext();
-        }
-        return nodoActual;
-    }
-    
-    @Override
-    public E set(int index, E element) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
+    private static class Node<T> {
+        T data;
+        Node<T> prev;
+        Node<T> next;
 
-        NodoDoble<E> nodoActual = first;
-        for (int i = 0; i < index; i++) {
-            nodoActual = nodoActual.getNext();
+        public Node(T data) {
+            this.data = data;
+            
+            prev = null;
+            next = null;
         }
-        E elementoAnterior = nodoActual.getElement();
-        nodoActual.setElement(element);
-        return elementoAnterior;
     }
 
-    @Override
-    public void removeAll(E element) {
-        NodoDoble<E> viajero = first;
+    public void add(T data) {
+        Node<T> newNode = new Node<>(data);
 
-        while (viajero != null) {
-            if (viajero.getElement().equals(element)) {
-                viajero = removeNode(viajero);
-            } else {
-                viajero = viajero.getNext();
+        if (head == null) {
+            newNode.next = newNode;
+            newNode.prev = newNode;
+            head = newNode;
+        } else {
+            Node<T> lastNode = head.prev;
+
+            newNode.next = head;
+            newNode.prev = lastNode;
+
+            head.prev = newNode;
+            lastNode.next = newNode;
+        }
+
+        size++;
+    }
+
+    public void remove(T data) {
+        if (head == null) {
+            return;
+        }
+
+        Node<T> currentNode = head;
+        Node<T> prevNode = null;
+
+        while (currentNode.data != data) {
+            if (currentNode.next == head) {
+                return;
             }
+
+            prevNode = currentNode;
+            currentNode = currentNode.next;
         }
-    }
 
-    private NodoDoble<E> removeNode(NodoDoble<E> node) {
-        NodoDoble<E> nextNode = node.getNext();
-        NodoDoble<E> prevNode = node.getPrev();
+        if (currentNode == head && currentNode.next == head) {
+            head = null;
+        } else if (currentNode == head) {
+            Node<T> lastNode = head.prev;
+            head = head.next;
 
-        if (node == first) {
-            first = nextNode;
+            lastNode.next = head;
+            head.prev = lastNode;
         } else {
-            prevNode.setNext(nextNode);
+            prevNode.next = currentNode.next;
+            currentNode.next.prev = prevNode;
         }
 
-        if (node == last) {
-            last = prevNode;
-        } else {
-            nextNode.setPrev(prevNode);
-        }
-        return nextNode;
+        size--;
     }
 
-    @Override
-    public String toString() {
-        String result = "{";
-        NodoDoble<E> p;
-        for (p = first; p != null; p = p.getNext()) {
+    public void printList() {
+        if (head == null) {
+            System.out.println("La lista está vacía.");
+            return;
+        }
 
-            result += p.getElement() + ", ";
-        }
-        if (!isEmpty()) {
-            result = result.substring(0, result.length() - 2);
-        }
-        return result + "}";
+        Node<T> currentNode = head;
+
+        do {
+            System.out.print(currentNode.data + " ");
+            currentNode = currentNode.next;
+        } while (currentNode != head);
+
+        System.out.println();
     }
 
-    @Override
-    public E getNext(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        NodoDoble<E> nodoActual = first;
-        for (int i = 0; i < index; i++) {
-            nodoActual = nodoActual.getNext();
-        }
-        NodoDoble<E> siguienteNodo = nodoActual.getNext();
-
-        if (siguienteNodo == null) {
-            return first.getElement();
-        } else {
-            return siguienteNodo.getElement();
-        }
+    public int size() {
+        return size;
     }
 
-    @Override
-    public E getPrev(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        NodoDoble<E> nodoActual = first;
-        for (int i = 0; i < index; i++) {
-            nodoActual = nodoActual.getNext();
-        }
-        NodoDoble<E> nodoAnterior = nodoActual.getPrev();
-
-        if (nodoAnterior == null) {
-            return last.getElement();
-        } else {
-            return nodoAnterior.getElement();
-        }
-    }
-
-    public NodoDoble<E> getNextNode(NodoDoble<E> node) {
-        if (isEmpty()) {
-            throw new NoSuchElementException("La lista está vacía.");
-        }
-
-        return node.getNext();
+    public boolean isEmpty() {
+        return size == 0;
     }
     
-    public NodoDoble<E> getPrevNode(NodoDoble<E> node){
-        if (isEmpty()) {
-        throw new NoSuchElementException("La lista está vacía.");
+    public T next(T data) {
+        if (head == null) {
+            return null;
+        }
+        
+        Node<T> currentNode = head;
+        
+        do {
+            if (currentNode.data.equals(data)) {
+                return currentNode.next.data;
+            }
+            
+            currentNode = currentNode.next;
+        } while (currentNode != head);
+        
+        return null;
     }
     
-    return node.getPrev();
+    public T prev(T data) {
+        if (head == null) {
+            return null;
+        }
+        
+        Node<T> currentNode = head;
+        
+        do {
+            if (currentNode.data.equals(data)) {
+                return currentNode.prev.data;
+            }
+            
+            currentNode = currentNode.next;
+        } while (currentNode != head);
+        
+        return null;
+    }
+    
+    public T get(int index) {
+        if (head == null || index < 0 || index >= size) {
+            return null;
+        }
+        
+        Node<T> currentNode = head;
+        
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        
+        return currentNode.data;
+    }
+    
+    public boolean contains(T data) {
+        if (head == null) {
+            return false;
+        }
+        
+        Node<T> currentNode = head;
+        
+        do {
+            if (currentNode.data.equals(data)) {
+                return true;
+            }
+            
+            currentNode = currentNode.next;
+        } while (currentNode != head);
+        
+        return false;
+    }
+    
+    public void removeByIndex(int index) {
+        if (head == null || index < 0 || index >= size) {
+            return;
         }
 
-    @Override
-    public Boolean has(E element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Node<T> currentNode = head;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode == head && currentNode.next == head) {
+            head = null;
+        } else if (currentNode == head) {
+            Node<T> lastNode = head.prev;
+            head = head.next;
+
+            lastNode.next = head;
+            head.prev = lastNode;
+        } else {
+            currentNode.prev.next = currentNode.next;
+            currentNode.next.prev = currentNode.prev;
+        }
+
+        size--;
     }
 }

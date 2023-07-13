@@ -10,6 +10,7 @@ import Datos.LeerArchivos;
 import Enums.EmojiComponentType;
 import Modelos.Profile;
 import Modelos.Usuario;
+import TDAS.CircularList;
 import TDAS.ListaCircularDoble;
 import com.pooespol.emojimakerg1.App;
 import java.util.HashMap;
@@ -105,7 +106,7 @@ public class AuthController {
             }
 
             if (!alreadyRegistered) {
-                Map<EmojiComponentType, ListaCircularDoble<String>> componentes = new HashMap();
+                Map<EmojiComponentType, CircularList<String>> componentes = new HashMap();
                 
                 componentes.put(EmojiComponentType.FACE, LeerArchivos.listaR());
                 componentes.put(EmojiComponentType.MIRADA, LeerArchivos.listaO());

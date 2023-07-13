@@ -9,35 +9,20 @@ import java.io.Serializable;
 /**
  *
  * @author Dell
- * @param <E>
+ * @param <T>
  */
-public interface List<E> extends Serializable {
+public interface List<T> extends Serializable {
+    void add(T data);
     
-    public int size();
-
-    public boolean isEmpty();
-
-    public void clear();
-
-    public boolean addFirst(E element); 
-
-    public boolean addLast(E element); 
+    void remove(T data);
     
-    public E removeFirst();
+    int size();
     
-    public E removeLast();
+    boolean isEmpty();
     
-    public E remove(int index); 
-
-    public E get(int index);
+    T get(int index);
     
-    public E set(int index, E element); 
+    boolean contains(T data);
     
-    public void removeAll(E element);
- 
-    public E getNext(int index);
-    
-    public E getPrev(int index);
-    
-    public Boolean has(E element); 
+    void removeByIndex(int index);
 }

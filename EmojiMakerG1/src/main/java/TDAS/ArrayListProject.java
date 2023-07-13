@@ -24,7 +24,6 @@ public class ArrayListProject<E> implements List<E> {
         return effectiveSize == 0;
     }
 
-    @Override
     public boolean addFirst(E element) {
         if (element == null) {
             return false;
@@ -41,7 +40,6 @@ public class ArrayListProject<E> implements List<E> {
         return true;
     }
 
-    @Override
     public boolean addLast(E element) {
         if (element == null) {
             return false;
@@ -95,7 +93,6 @@ public class ArrayListProject<E> implements List<E> {
         this.elements = newElements;
     }
 
-    @Override
     public void clear() {
         for (int i = 0; i < effectiveSize; i++) {
             elements[i] = null;
@@ -103,7 +100,6 @@ public class ArrayListProject<E> implements List<E> {
         effectiveSize = 0;
     }
 
-    @Override
     public E removeFirst() {
         if (isEmpty()) {
             return null;
@@ -120,7 +116,6 @@ public class ArrayListProject<E> implements List<E> {
         return elementoRemovido;
     }
 
-    @Override
     public E removeLast() {
         if (isEmpty()) {
             return null;
@@ -134,7 +129,6 @@ public class ArrayListProject<E> implements List<E> {
         return elementoRemovido;
     }
 
-    @Override
     public E remove(int index) {
         if (index < 0 || index >= effectiveSize) {
             return null;
@@ -151,7 +145,6 @@ public class ArrayListProject<E> implements List<E> {
         return elementoRemovido;
     }
 
-    @Override
     public E set(int index, E element) {
         if (index < 0 || index >= effectiveSize || element == null) {
             return null;
@@ -163,7 +156,6 @@ public class ArrayListProject<E> implements List<E> {
         return reemplazo;
     }
 
-    @Override
     public void removeAll(E element) {
         if (element == null) {
             return;
@@ -177,7 +169,6 @@ public class ArrayListProject<E> implements List<E> {
         }
     }
 
-    @Override
     public E getNext(int index) {
         if (index < 0 || index >= effectiveSize) {
             return null;
@@ -188,7 +179,6 @@ public class ArrayListProject<E> implements List<E> {
         return elements[indiceSiguiente];
     }
 
-    @Override
     public E getPrev(int index) {
         if (index < 0 || index >= effectiveSize) {
             return null;
@@ -199,8 +189,27 @@ public class ArrayListProject<E> implements List<E> {
         return elements[indiceAnterior];
     }
 
-    @Override
     public Boolean has(E element) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void add(E data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void remove(E data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean contains(E data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void removeByIndex(int index) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

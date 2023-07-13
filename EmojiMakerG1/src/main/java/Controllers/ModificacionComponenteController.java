@@ -5,6 +5,7 @@
 package Controllers;
 
 import static Datos.LeerArchivos.listaR;
+import TDAS.CircularList;
 import TDAS.ListaCircularDoble;
 import com.pooespol.emojimakerg1.App;
 import java.io.File;
@@ -85,7 +86,7 @@ public class ModificacionComponenteController {
 
     @FXML
     void eliminarRostro(ActionEvent event) {
-        ListaCircularDoble<String> listaRostros = listaR();
+        CircularList<String> listaRostros = listaR();
 
 // Crear un GridPane
         GridPane gridPane = new GridPane();
@@ -119,7 +120,7 @@ public class ModificacionComponenteController {
         imageView.setOnMouseClicked(e -> {
             // Eliminar el emoji de la lista
             System.out.println(listaRostros);
-            listaRostros.remove(index);
+            listaRostros.removeByIndex(index);
             
             // Mostrar un aviso de que el emoji fue eliminado
             Alert alert = new Alert(AlertType.INFORMATION);

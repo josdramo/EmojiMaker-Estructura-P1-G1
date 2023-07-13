@@ -5,6 +5,7 @@
 package Modelos;
 
 import Enums.EmojiComponentType;
+import TDAS.CircularList;
 import TDAS.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,19 +38,19 @@ public class Emoticon extends Model {
         return componentes.get(type);
     }
     
-    public void restoreLastChange(Map<EmojiComponentType, List<String>> componentesParaComprobar) {
+    public void restoreLastChange(Map<EmojiComponentType, CircularList<String>> componentesParaComprobar) {
         if (!historial.isEmpty()) {
             String ultimoCambio = historial.pop();
             
-            if (componentesParaComprobar.get(EmojiComponentType.FACE).has(ultimoCambio)) {
+            if (componentesParaComprobar.get(EmojiComponentType.FACE).contains(ultimoCambio)) {
                 componentes.put(EmojiComponentType.FACE, ultimoCambio);
             }
             
-            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).has(ultimoCambio)) {
+            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).contains(ultimoCambio)) {
                 componentes.put(EmojiComponentType.MIRADA, ultimoCambio);
             }
             
-            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).has(ultimoCambio)) {
+            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).contains(ultimoCambio)) {
                 componentes.put(EmojiComponentType.MIRADA, ultimoCambio);
             }
         }

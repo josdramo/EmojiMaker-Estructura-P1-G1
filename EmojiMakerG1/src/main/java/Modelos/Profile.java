@@ -5,6 +5,7 @@
 package Modelos;
 
 import Enums.EmojiComponentType;
+import TDAS.CircularList;
 import TDAS.List;
 import TDAS.ListaCircularDoble;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class Profile extends Model {
     
     private List<Emoticon> emoticones;
     private Usuario usuario;
-    private Map<EmojiComponentType, ListaCircularDoble<String>> componentes;
+    private Map<EmojiComponentType, CircularList<String>> componentes;
 
     public Profile(Usuario usuario) {
         this.usuario = usuario;
@@ -29,7 +30,7 @@ public class Profile extends Model {
         this.emoticones = emoticones;
     }
     
-    public Profile(Usuario usuario, Map<EmojiComponentType, ListaCircularDoble<String>> componentes) {
+    public Profile(Usuario usuario, Map<EmojiComponentType, CircularList<String>> componentes) {
         this(usuario);
         this.componentes = componentes;
     }
@@ -46,7 +47,7 @@ public class Profile extends Model {
         return usuario;
     }
 
-    public Map<EmojiComponentType, ListaCircularDoble<String>> getComponentes() {
+    public Map<EmojiComponentType, CircularList<String>> getComponentes() {
         return componentes;
     }
     
