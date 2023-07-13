@@ -152,7 +152,7 @@ public class App extends Application {
             perfilesDeserializados = new TreeSet(new ProfileByNameComparator());
         }
         
-        return new TreeSet(new ProfileByNameComparator());
+        return perfilesDeserializados;
     }
 
     public Profile getProfile() {

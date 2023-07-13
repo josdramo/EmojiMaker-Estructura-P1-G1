@@ -5,7 +5,6 @@
 package Datos;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,18 +32,24 @@ public class Serializator {
         FileInputStream fileIn = null;
         try {
             fileIn = new FileInputStream("data/" + filename);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            T object = (T) in.readObject();
-            in.close();
+            T object;
+            try (ObjectInputStream in = new ObjectInputStream(fileIn)) {
+                object = (T) in.readObject();
+            }
+            
             return object;
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             if (fileIn != null) {
                 try {
                     fileIn.close();
-                } catch (Exception e1) {
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                     // do nothing
                 }
             }
+            
+            
             return null;
         }
     }
