@@ -1,4 +1,4 @@
-package com.pooespol.emojimakerg1;
+package com.app;
 
 import Comparators.ProfileByNameComparator;
 import Controllers.AuthController;
@@ -7,7 +7,6 @@ import Controllers.ConsultarEmojisController;
 import Controllers.CreateEmoticonController;
 import Controllers.ModificacionComponenteController;
 import Datos.Serializator;
-import Modelos.Emoticon;
 import Modelos.Profile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

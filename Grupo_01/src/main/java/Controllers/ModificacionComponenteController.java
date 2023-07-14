@@ -8,7 +8,7 @@ import static Datos.LeerArchivos.listaR;
 import Enums.EmojiComponentType;
 import TDAS.CircularList;
 import TDAS.ListaCircularDoble;
-import com.pooespol.emojimakerg1.App;
+import com.app.App;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;

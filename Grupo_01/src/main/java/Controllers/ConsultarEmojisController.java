@@ -7,7 +7,7 @@ package Controllers;
 import Components.EmoticonItem;
 import Modelos.Emoji;
 import Modelos.Emoticon;
-import com.pooespol.emojimakerg1.App;
+import com.app.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;

@@ -2,8 +2,8 @@ module com.pooespol.emojimakerg1 {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens com.pooespol.emojimakerg1 to javafx.fxml;
-    exports com.pooespol.emojimakerg1;
+    opens com.app to javafx.fxml;
+    exports com.app;
     
     
     opens Controllers to javafx.fxml;

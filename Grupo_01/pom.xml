@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.pooEspol</groupId>
-    <artifactId>EmojiMakerG1</artifactId>
+    <groupId>com.app</groupId>
+    <artifactId>Grupo_01</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,7 +43,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.pooespol.emojimakerg1.App</mainClass>
+                    <mainClass>com.app.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -87,4 +87,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>Grupo_01</name>
 </project>

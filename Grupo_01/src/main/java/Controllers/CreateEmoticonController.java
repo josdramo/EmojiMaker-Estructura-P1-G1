@@ -8,7 +8,7 @@ import Enums.EmojiComponentType;
 import Modelos.Emoticon;
 import TDAS.CircularArray;
 import TDAS.CircularList;
-import com.pooespol.emojimakerg1.App;
+import com.app.App;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.ImageView;
