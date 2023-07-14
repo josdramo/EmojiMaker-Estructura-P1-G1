@@ -297,7 +297,7 @@ public class ModificacionComponenteController {
     
     public void initialize(){
         String rutaBaseProyecto = System.getProperty("user.dir");
-        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
+        Image img = new Image("file:" + rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
 
         double width = 600;
         double height = 400;
