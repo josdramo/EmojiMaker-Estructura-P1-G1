@@ -38,13 +38,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateEmoticonController">
+<VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateEmoticonController">
    <children>
-      <Button mnemonicParsing="false" onAction="#onDeshacer" text="Deshacer" />
+      <Button mnemonicParsing="false" onAction="#onDeshacer" style="-fx-background-color: #E78DFF;" text="Deshacer">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fef5ff" height="187.0" stroke="WHITE" strokeType="INSIDE" width="202.0" />
             <ImageView fx:id="rostroImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="miradaImageView" fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <StackPane.margin>
@@ -58,28 +63,28 @@
       </StackPane>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onMostrarRostros" text="ROSTRO">
+            <Button mnemonicParsing="false" onAction="#onMostrarRostros" style="-fx-background-color: #E78DFF;" text="ROSTRO">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="ojoButton" mnemonicParsing="false" onAction="#onMostrarMiradas" text="OJOS">
+            <Button fx:id="ojoButton" mnemonicParsing="false" onAction="#onMostrarMiradas" style="-fx-background-color: #E78DFF;" text="OJOS">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="bocaButton" mnemonicParsing="false" onAction="#onMostrarMouths" text="BOCA">
+            <Button fx:id="bocaButton" mnemonicParsing="false" onAction="#onMostrarMouths" style="-fx-background-color: #E78DFF;" text="BOCA">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onMoverComponentesALaIzquierda" text="&lt;" />
+            <Button mnemonicParsing="false" onAction="#onMoverComponentesALaIzquierda" style="-fx-background-color: #4E06A9;" text="&lt;&lt;" textFill="WHITE" />
             <HBox fx:id="componentsHBox" spacing="10.0" />
-            <Button mnemonicParsing="false" onAction="#onMoverComponentesALaDerecha" text="&gt;" />
+            <Button mnemonicParsing="false" onAction="#onMoverComponentesALaDerecha" style="-fx-background-color: #4E06A9;" text="&gt;&gt;" textFill="WHITE" />
          </children>
          <VBox.margin>
             <Insets />
@@ -87,8 +92,14 @@
       </HBox>
       <HBox alignment="CENTER" spacing="25.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onGuardar" text="Guardar" />
-            <Button mnemonicParsing="false" onAction="#onCancelar" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#onGuardar" style="-fx-background-color: #E78DFF;" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#onCancelar" style="-fx-background-color: #E78DFF;" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>

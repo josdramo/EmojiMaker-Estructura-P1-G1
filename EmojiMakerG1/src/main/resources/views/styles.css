@@ -1,0 +1,42 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 13 jul. 2023, 20:29:19
+    Author     : Dell
+*/
+
+.auth-scene {
+    -fx-background-image: url("fondo_ventanas.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+
+.menu-scene {
+    -fx-background-image: url("fondo_ventanas.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+
+.create-emoticon-scene {
+    -fx-background-image: url("fondo_ventanas.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+
+.consult-emojis-scene {
+    -fx-background-image: url("fondo_ventanas.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.modify-component-scene {
+    -fx-background-image: url("fondo_ventanas.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
