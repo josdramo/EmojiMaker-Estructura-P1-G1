@@ -11,6 +11,12 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -42,5 +48,18 @@ public class MenuPrincipalController {
     public void setApp(App app) {
         this.app = app;
     }
+    
+    public void initialize(){
+        String rutaBaseProyecto = System.getProperty("user.dir");
+        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
 
+        double width = 300;
+        double height = 290;
+
+        BackgroundSize backgroundSize = new BackgroundSize(width, height, false, false, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
+        Background background = new Background(backgroundImage);
+
+        container.setBackground(background);
+    }
 }

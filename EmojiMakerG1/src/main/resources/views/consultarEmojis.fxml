@@ -11,7 +11,7 @@
    <children>
       <ButtonBar>
         <buttons>
-          <Button mnemonicParsing="false" onAction="#onVolverAlMenu" style="-fx-background-color: A7B6A3;" text="Volver al menu">
+          <Button mnemonicParsing="false" onAction="#onVolverAlMenu" style="-fx-background-color: #E78DFF;" text="Volver al menu">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
@@ -23,15 +23,15 @@
       <ListView fx:id="emojisListView" prefHeight="348.0" prefWidth="500.0" />
       <ButtonBar>
         <buttons>
-            <Button mnemonicParsing="false" onAction="#onAgregar" style="-fx-background-color: A7B6A3;" text="Agregar">
+            <Button mnemonicParsing="false" onAction="#onAgregar" style="-fx-background-color: #E78DFF;" text="Agregar">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-          <Button mnemonicParsing="false" onAction="#onEditar" style="-fx-background-color: A7B6A3;" text="Editar">
+          <Button mnemonicParsing="false" onAction="#onEditar" style="-fx-background-color: #E78DFF;" text="Editar">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onEliminar" style="-fx-background-color: A7B6A3;" text="Eliminar">
+            <Button mnemonicParsing="false" onAction="#onEliminar" style="-fx-background-color: #E78DFF;" text="Eliminar">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>

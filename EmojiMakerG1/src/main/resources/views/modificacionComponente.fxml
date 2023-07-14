@@ -8,51 +8,71 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModificacionComponenteController">
+<VBox fx:id="container" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModificacionComponenteController">
    <children>
-      <Button fx:id="btnMenuPrincipal" mnemonicParsing="false" onAction="#volverMenuPrincipal" text="Volver al menú princpal">
+      <Button fx:id="btnMenuPrincipal" mnemonicParsing="false" onAction="#volverMenuPrincipal" style="-fx-background-color: #E78DFF;" text="Volver al menú princpal">
          <VBox.margin>
             <Insets bottom="10.0" left="400.0" top="10.0" />
          </VBox.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
       </Button>
-      <Line endX="100.0" startX="-456.77691650390625" startY="0.4142006039619446" />
-      <Label prefHeight="49.0" prefWidth="265.0" text="Sección añadir componente">
+      <Line endX="100.0" fill="WHITE" startX="-456.77691650390625" startY="0.4142006039619446" stroke="WHITE" />
+      <Label prefHeight="49.0" prefWidth="265.0" text="Sección añadir componente" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefHeight="55.0" prefWidth="250.0" text="Selecciona el componente:">
+      <Label alignment="CENTER" prefHeight="55.0" prefWidth="250.0" text="Selecciona el componente:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <HBox alignment="CENTER" prefHeight="63.0" prefWidth="600.0" spacing="100.0">
          <children>
-            <Button fx:id="btnAnadirRostro" mnemonicParsing="false" onAction="#anadirRostro" prefHeight="40.0" prefWidth="100.0" text="Rostro" />
-            <Button fx:id="btnAnadirOjos" mnemonicParsing="false" onAction="#anadirOjos" prefHeight="40.0" prefWidth="100.0" text="Ojos" />
-            <Button fx:id="btnAnadirBoca" mnemonicParsing="false" onAction="#anadirBoca" prefHeight="40.0" prefWidth="100.0" text="Boca" />
+            <Button fx:id="btnAnadirRostro" mnemonicParsing="false" onAction="#anadirRostro" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #E78DFF;" text="Rostro">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="btnAnadirOjos" mnemonicParsing="false" onAction="#anadirOjos" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #E78DFF;" text="Ojos">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="btnAnadirBoca" mnemonicParsing="false" onAction="#anadirBoca" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #E78DFF;" text="Boca">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
          </children>
       </HBox>
-      <Line endX="100.0" startX="-456.77691650390625" startY="0.4142006039619446" />
-      <Label prefHeight="55.0" prefWidth="278.0" text="Sección eliminar componente">
+      <Line endX="100.0" startX="-456.77691650390625" startY="0.4142006039619446" stroke="WHITE" />
+      <Label prefHeight="55.0" prefWidth="278.0" text="Sección eliminar componente" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label prefHeight="47.0" prefWidth="250.0" text="Selecciona el componente:">
+      <Label prefHeight="47.0" prefWidth="250.0" text="Selecciona el componente:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <HBox alignment="CENTER" prefHeight="99.0" prefWidth="600.0" spacing="100.0">
          <children>
-            <Button fx:id="btnEliminarRostro" mnemonicParsing="false" onAction="#eliminarRostro" prefHeight="40.0" prefWidth="100.0" text="Rostro" />
-            <Button fx:id="btnEliminarOjos" mnemonicParsing="false" onAction="#eliminarOjos" prefHeight="40.0" prefWidth="100.0" text="Ojos" />
-            <Button fx:id="btnEliminarBoca" mnemonicParsing="false" onAction="#eliminarBoca" prefHeight="40.0" prefWidth="100.0" text="Boca" />
+            <Button fx:id="btnEliminarRostro" mnemonicParsing="false" onAction="#eliminarRostro" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #E78DFF;" text="Rostro">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="btnEliminarOjos" mnemonicParsing="false" onAction="#eliminarOjos" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #E78DFF;" text="Ojos">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="btnEliminarBoca" mnemonicParsing="false" onAction="#eliminarBoca" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #E78DFF;" text="Boca">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
          </children>
       </HBox>
-      <Line endX="100.0" startX="-458.0">
+      <Line endX="100.0" startX="-458.0" stroke="WHITE">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>

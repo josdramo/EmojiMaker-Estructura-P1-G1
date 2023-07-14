@@ -30,6 +30,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -40,6 +41,8 @@ import javafx.stage.Stage;
  */
 public class ModificacionComponenteController {
 
+    @FXML
+    private VBox container;
     
     App app;
     private String directorioEspecifico;
@@ -290,5 +293,19 @@ public class ModificacionComponenteController {
 
     public void setApp(App app) {
         this.app = app;
+    }
+    
+    public void initialize(){
+        String rutaBaseProyecto = System.getProperty("user.dir");
+        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
+
+        double width = 600;
+        double height = 400;
+
+        BackgroundSize backgroundSize = new BackgroundSize(width, height, false, false, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
+        Background background = new Background(backgroundImage);
+
+        container.setBackground(background);
     }
 }
