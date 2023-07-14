@@ -134,7 +134,7 @@ public class ModificacionComponenteController {
         }
         Scene scene = new Scene(gridPane, 800, 700);
         String rutaBaseProyecto = System.getProperty("user.dir");
-        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
+        Image img = new Image("file" + rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
 
         double width = 800;
         double height = 700;
@@ -194,7 +194,7 @@ public class ModificacionComponenteController {
         }
         Scene scene = new Scene(gridPane, 800, 700);
         String rutaBaseProyecto = System.getProperty("user.dir");
-        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
+        Image img = new Image("file:" + rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
 
         double width = 800;
         double height = 700;
@@ -254,7 +254,7 @@ public class ModificacionComponenteController {
         }
         Scene scene = new Scene(gridPane, 800, 700);
         String rutaBaseProyecto = System.getProperty("user.dir");
-        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
+        Image img = new Image("file:" + rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
 
         double width = 800;
         double height = 700;
