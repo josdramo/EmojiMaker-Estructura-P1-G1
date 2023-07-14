@@ -49,8 +49,8 @@ public class Emoticon extends Model {
                 componentes.put(EmojiComponentType.MIRADA, ultimoCambio);
             }
             
-            else if (componentesParaComprobar.get(EmojiComponentType.MIRADA).contains(ultimoCambio)) {
-                componentes.put(EmojiComponentType.MIRADA, ultimoCambio);
+            else if (componentesParaComprobar.get(EmojiComponentType.MOUTH).contains(ultimoCambio)) {
+                componentes.put(EmojiComponentType.MOUTH, ultimoCambio);
             }
         }
     }
