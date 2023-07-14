@@ -123,6 +123,9 @@ public class ModificacionComponenteController {
                 alert.setContentText("El emoji seleccionado fue eliminado");
                 alert.showAndWait();
 
+                Stage stageActual = (Stage) imageView.getScene().getWindow();
+                stageActual.close();
+                
                 eliminarBoca(event);
             });
         }
@@ -179,7 +182,10 @@ public class ModificacionComponenteController {
                 alert.setHeaderText(null);
                 alert.setContentText("El emoji seleccionado fue eliminado");
                 alert.showAndWait();
-
+                
+                Stage stageActual = (Stage) imageView.getScene().getWindow();
+                stageActual.close();
+    
                 eliminarOjos(event);
             });
         }
@@ -237,6 +243,9 @@ public class ModificacionComponenteController {
                 alert.setContentText("El emoji seleccionado fue eliminado");
                 alert.showAndWait();
 
+                Stage stageActual = (Stage) imageView.getScene().getWindow();
+                stageActual.close();
+    
                 eliminarRostro(event);
             });
         }
