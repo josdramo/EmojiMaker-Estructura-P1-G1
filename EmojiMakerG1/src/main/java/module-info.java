@@ -8,4 +8,7 @@ module com.pooespol.emojimakerg1 {
     
     opens Controllers to javafx.fxml;
     exports Controllers;
+    
+    opens Components to javafx.fxml;
+    exports Components;
 }

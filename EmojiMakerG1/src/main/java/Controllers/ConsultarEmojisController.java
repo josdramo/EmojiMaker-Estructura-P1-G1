@@ -4,9 +4,12 @@
  */
 package Controllers;
 
+import Components.EmoticonItem;
 import Modelos.Emoji;
+import Modelos.Emoticon;
 import com.pooespol.emojimakerg1.App;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -27,7 +30,47 @@ public class ConsultarEmojisController {
     private VBox container;
     
     @FXML
-    private ListView<Emoji> emojisListView;
+    private ListView<Emoticon> emojisListView;
+    
+    public void initialize() {
+        String rutaBaseProyecto = System.getProperty("user.dir");
+        Image img = new Image(rutaBaseProyecto + "/src/main/resources/views/fondo_ventanas.jpg");
+
+        double width = 500;
+        double height = 438;
+
+        BackgroundSize backgroundSize = new BackgroundSize(width, height, false, false, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
+        Background background = new Background(backgroundImage);
+
+        container.setBackground(background);
+        
+        
+        
+        emojisListView.setCellFactory(param -> new ListCell<Emoticon>() {
+            private final EmoticonItem emoticonItem = new EmoticonItem();
+            
+            @Override
+            protected void updateItem(Emoticon emoticon, boolean empty) {
+                super.updateItem(emoticon, empty);
+                
+                if (empty) {
+                    setGraphic(null);
+                }
+                
+                if (!empty) {
+                    
+                    
+                    emoticonItem.setEmoticon(emoticon);
+                    setGraphic(emoticonItem);
+                }
+            }
+        });
+    }
+    
+    public void build() {
+        buildEmojisListView();
+    }
     
     public void onVolverAlMenu() {
         app.switchToMenuPrincipal();
@@ -47,5 +90,14 @@ public class ConsultarEmojisController {
 
     public void setApp(App app) {
         this.app = app;
+    }
+    
+    private void buildEmojisListView() {
+        emojisListView.getItems().clear();
+        
+        for (Emoticon emoticon : app.getProfile().getEmoticones()) {
+            
+            emojisListView.getItems().add(emoticon);
+        }
     }
 }

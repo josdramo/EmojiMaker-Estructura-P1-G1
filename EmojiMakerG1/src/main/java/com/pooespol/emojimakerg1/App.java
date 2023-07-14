@@ -29,6 +29,7 @@ public class App extends Application {
     private Scene createEmoticonScene;
     private Scene consultarEmojiScene;
     private Scene modificarComponenteScene;
+    private ConsultarEmojisController consultarEmojisController;
 
     private Stage primaryStage;
 
@@ -68,6 +69,7 @@ public class App extends Application {
     }
 
     public void switchToConsultarEmojis() {
+        consultarEmojisController.build();
         primaryStage.setScene(consultarEmojiScene);
         primaryStage.setTitle("Consultar Emojis");
     }
@@ -80,7 +82,6 @@ public class App extends Application {
     public void createSession(Profile profile) {
         System.out.println("creando sesión");
         this.profile = profile;
-
         switchToMenuPrincipal();
 
         // TODO: Crear perfil
@@ -123,13 +124,13 @@ public class App extends Application {
 
             AuthController authController = authLoader.getController();
             MenuPrincipalController menuPrincipalController = menuLoader.getController();
-            ConsultarEmojisController verEmojisController = consultarEmojisLoader.getController();
+            consultarEmojisController = consultarEmojisLoader.getController();
             CreateEmoticonController createEmoticonController = createEmoticonLoader.getController();
             ModificacionComponenteController modificacionComponenteController = modificarComponenteLoader.getController();
 
             authController.setApp(this);
             menuPrincipalController.setApp(this);
-            verEmojisController.setApp(this);
+            consultarEmojisController.setApp(this);
             createEmoticonController.setApp(this);
             modificacionComponenteController.setApp(this);
 
@@ -141,6 +142,7 @@ public class App extends Application {
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -156,6 +158,11 @@ public class App extends Application {
 
     public Profile getProfile() {
         return profile;
+    }
+
+
+    public ConsultarEmojisController getConsultarEmojisController() {
+        return consultarEmojisController;
     }
 
 }
