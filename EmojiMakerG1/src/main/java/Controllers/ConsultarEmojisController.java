@@ -81,7 +81,10 @@ public class ConsultarEmojisController {
     }
     
     public void onEditar() {
-        app.openCreateEmoticonModal(emojisListView.getSelectionModel().getSelectedIndex());
+        Integer emojiSelectedIndex = emojisListView.getSelectionModel().getSelectedIndex();
+        if (emojiSelectedIndex != -1) {
+            app.openCreateEmoticonModal(emojiSelectedIndex);
+        }
     }
     
     public void onEliminar() {

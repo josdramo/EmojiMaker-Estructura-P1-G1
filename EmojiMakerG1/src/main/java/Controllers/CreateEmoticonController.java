@@ -128,13 +128,14 @@ public class CreateEmoticonController {
         app.getConsultarEmojisController().build();
         
         stage.close();
-        app.loadScenes();
+        app.loadCreateEmoticonFxml();
     }
     
     public void onCancelar() {
         Stage stage = (Stage) container.getScene().getWindow();
         
         stage.close();
+        app.loadCreateEmoticonFxml();
     }
     
     public void setApp(App app) {
