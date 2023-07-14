@@ -7,6 +7,7 @@ import Controllers.ConsultarEmojisController;
 import Controllers.CreateEmoticonController;
 import Controllers.ModificacionComponenteController;
 import Datos.Serializator;
+import Modelos.Emoticon;
 import Modelos.Profile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,7 @@ public class App extends Application {
     private Scene modificarComponenteScene;
     
     private ConsultarEmojisController consultarEmojisController;
+    private CreateEmoticonController createEmoticonController;
     
     private Stage primaryStage;
     
@@ -110,6 +112,11 @@ public class App extends Application {
         stage.show();
     }
     
+    public void openCreateEmoticonModal(Emoticon emoticon) {
+        createEmoticonController.setEmoticon(emoticon);
+        openCreateEmoticonModal();
+    }
+    
     
     public void loadScenes() {
         try {
@@ -128,7 +135,7 @@ public class App extends Application {
             AuthController authController = authLoader.getController();
             MenuPrincipalController menuPrincipalController = menuLoader.getController();
             consultarEmojisController = consultarEmojisLoader.getController();
-            CreateEmoticonController createEmoticonController = createEmoticonLoader.getController();
+            createEmoticonController = createEmoticonLoader.getController();
             ModificacionComponenteController  modificacionComponenteController = modificarComponenteLoader.getController();
             
             authController.setApp(this);

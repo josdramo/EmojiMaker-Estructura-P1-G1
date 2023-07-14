@@ -170,5 +170,9 @@ public class CreateEmoticonController {
             mouthImageView.setImage(new Image(mouthUrl));
         }
     }
+
+    public void setEmoticon(Emoticon emoticon) {
+        this.emoticon = emoticon;
+    }
 }
 
