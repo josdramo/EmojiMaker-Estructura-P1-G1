@@ -110,8 +110,8 @@ public class App extends Application {
         stage.show();
     }
     
-    public void openCreateEmoticonModal(Emoticon emoticon) {
-        createEmoticonController.setEmoticon(emoticon);
+    public void openCreateEmoticonModal(int emoticonIndex) {
+        createEmoticonController.setIndexEmoticonToEditInProfile(emoticonIndex);
         openCreateEmoticonModal();
     }
     

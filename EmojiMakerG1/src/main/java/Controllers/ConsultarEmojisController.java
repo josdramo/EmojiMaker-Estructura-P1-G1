@@ -81,11 +81,12 @@ public class ConsultarEmojisController {
     }
     
     public void onEditar() {
-        // TODO
+        app.openCreateEmoticonModal(emojisListView.getSelectionModel().getSelectedIndex());
     }
     
     public void onEliminar() {
-        // TODO
+        app.getProfile().getEmoticones().removeByIndex(emojisListView.getSelectionModel().getSelectedIndex());
+        buildEmojisListView();
     }
 
     public void setApp(App app) {

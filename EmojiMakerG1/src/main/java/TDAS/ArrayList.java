@@ -87,6 +87,14 @@ public class ArrayList<T> implements List<T>, Serializable, Iterable<T> {
     public Iterator<T> iterator() {
         return new ArrayListIterator();
     }
+    
+    public void update(int index, T data) {
+        if (index >= 0 && index < size) {
+            elements[index] = data;
+        } else {
+            throw new IndexOutOfBoundsException("Index out of range: " + index);
+        }
+    }
 
     private void expandCapacity() {
         int newCapacity = elements.length * 2;

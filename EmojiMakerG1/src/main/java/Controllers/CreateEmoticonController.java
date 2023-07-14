@@ -49,6 +49,7 @@ public class CreateEmoticonController {
     private CircularList<String> componentes;
     private CircularArray<String> componentesMostrados;
     private Emoticon emoticon;
+    private Integer indexEmoticonToEditInProfile = null;
     
     public void initialize() {
         emoticon = new Emoticon();
@@ -116,9 +117,15 @@ public class CreateEmoticonController {
     public void onGuardar() {
         Stage stage = (Stage) container.getScene().getWindow();
         
-        if (!emoticon.isEmpty()) {
+        if (indexEmoticonToEditInProfile != null && !emoticon.isEmpty()) {
+            app.getProfile().getEmoticones().update(indexEmoticonToEditInProfile, emoticon);
+        }
+        
+        if (indexEmoticonToEditInProfile == null && !emoticon.isEmpty()) {
             app.getProfile().getEmoticones().add(emoticon);
         }
+        
+        app.getConsultarEmojisController().build();
         
         stage.close();
         app.loadScenes();
@@ -187,8 +194,11 @@ public class CreateEmoticonController {
         }
     }
 
-    public void setEmoticon(Emoticon emoticon) {
-        this.emoticon = emoticon;
+    public void setIndexEmoticonToEditInProfile(int indexEmoticonToEditInProfile) {
+        this.indexEmoticonToEditInProfile = indexEmoticonToEditInProfile;
+        
+        this.emoticon = app.getProfile().getEmoticones().get(indexEmoticonToEditInProfile);
+        refreshEmoticonImageView();
     }
 }
 
