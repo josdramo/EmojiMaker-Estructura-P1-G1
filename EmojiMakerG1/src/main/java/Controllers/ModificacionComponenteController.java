@@ -286,7 +286,7 @@ public class ModificacionComponenteController {
         File archivoSeleccionado = archivoEscogido.showOpenDialog(null);
         if (archivoSeleccionado != null) {
             String rutaArchivoSeleccionado = archivoSeleccionado.getAbsolutePath();
-            return rutaArchivoSeleccionado;
+            return "file:" + rutaArchivoSeleccionado;
         }
         return null;
     }

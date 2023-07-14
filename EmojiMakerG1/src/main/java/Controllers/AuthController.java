@@ -8,6 +8,7 @@ import Comparators.ProfileComparator;
 import Comparators.UserComparator;
 import Datos.LeerArchivos;
 import Enums.EmojiComponentType;
+import Modelos.Emoticon;
 import Modelos.Profile;
 import Modelos.Usuario;
 import TDAS.CircularList;
@@ -112,7 +113,15 @@ public class AuthController {
                 componentes.put(EmojiComponentType.MIRADA, LeerArchivos.listaO());
                 componentes.put(EmojiComponentType.MOUTH, LeerArchivos.listaB());
                 
+                Emoticon emoticonUno = new Emoticon();
+                
+                emoticonUno.updateComponent(EmojiComponentType.FACE, componentes.get(EmojiComponentType.FACE).get(1));
+                emoticonUno.updateComponent(EmojiComponentType.MIRADA, componentes.get(EmojiComponentType.MIRADA).get(3));
+                emoticonUno.updateComponent(EmojiComponentType.MOUTH, componentes.get(EmojiComponentType.MOUTH).get(0));
+                
                 Profile profile = new Profile(usuario, componentes);
+                
+                profile.getEmoticones().add(emoticonUno);
                 
                 App.perfiles.add(profile);
                 
