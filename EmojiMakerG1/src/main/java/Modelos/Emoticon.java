@@ -54,4 +54,8 @@ public class Emoticon extends Model {
             }
         }
     }
+    
+    public Boolean isEmpty() {
+        return componentes.isEmpty();
+    }
 }

@@ -8,13 +8,13 @@ import Enums.EmojiComponentType;
 import Modelos.Emoticon;
 import TDAS.CircularArray;
 import TDAS.CircularList;
-import TDAS.ListaCircularDoble;
 import com.pooespol.emojimakerg1.App;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 /**
  *
@@ -98,11 +98,19 @@ public class CreateEmoticonController {
     }
     
     public void onGuardar() {
+        Stage stage = (Stage) container.getScene().getWindow();
         
+        if (!emoticon.isEmpty()) {
+            app.getProfile().getEmoticones().add(emoticon);
+        }
+        
+        stage.close();
     }
     
     public void onCancelar() {
-        app.switchToMenuPrincipal();
+        Stage stage = (Stage) container.getScene().getWindow();
+        
+        stage.close();
     }
     
     public void setApp(App app) {
