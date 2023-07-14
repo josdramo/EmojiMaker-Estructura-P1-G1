@@ -80,7 +80,7 @@ public class App extends Application {
         System.out.println("creando sesión");
         this.profile = profile;
         
-        
+
         switchToMenuPrincipal();
         
          // TODO: Crear perfil
