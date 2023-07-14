@@ -49,7 +49,7 @@
          </font></Button>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fef5ff" height="187.0" stroke="WHITE" strokeType="INSIDE" width="202.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#efdbf2" height="187.0" stroke="WHITE" strokeType="INSIDE" width="202.0" />
             <ImageView fx:id="rostroImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="miradaImageView" fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <StackPane.margin>
