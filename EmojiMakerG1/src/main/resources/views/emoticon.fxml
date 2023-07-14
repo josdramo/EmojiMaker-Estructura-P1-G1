@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 
-<fx:root prefHeight="150.0" prefWidth="200.0" type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="E">
+<fx:root prefHeight="150.0" prefWidth="200.0" type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="rostroImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="miradaImageView" fitHeight="100.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">

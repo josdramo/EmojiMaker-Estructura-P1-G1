@@ -39,6 +39,7 @@ public class EmoticonItem extends StackPane {
             fxmlLoader.load();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -62,5 +63,6 @@ public class EmoticonItem extends StackPane {
 
     public void setEmoticon(Emoticon emoticon) {
         this.emoticon = emoticon;
+        this.build();
     }
 }
