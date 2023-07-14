@@ -49,6 +49,11 @@ public class CreateEmoticonController {
         emoticon = new Emoticon();
     }
     
+    public void onDeshacer() {
+        emoticon.restoreLastChange(app.getProfile().getComponentes());
+        refreshEmoticonImageView();
+    }
+    
     public void onMostrarRostros() {
         currentComponentType = EmojiComponentType.FACE;
         

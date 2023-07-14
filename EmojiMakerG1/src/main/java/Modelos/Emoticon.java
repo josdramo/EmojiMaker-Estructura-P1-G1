@@ -6,7 +6,6 @@ package Modelos;
 
 import Enums.EmojiComponentType;
 import TDAS.CircularList;
-import TDAS.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;

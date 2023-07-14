@@ -38,12 +38,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="container" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateEmoticonController">
    <children>
-      <Button mnemonicParsing="false" text="Deshacer" />
+      <Button mnemonicParsing="false" onAction="#onDeshacer" text="Deshacer" />
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fx:id="rostroImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
