@@ -26,6 +26,8 @@ import javafx.stage.Stage;
  */
 public class CreateEmoticonController extends Controller {
     final private int CANTIDAD_COMPONENTES_MOSTRADOS = 3;
+    final private int IMAGE_HEIGHT = 50;
+    final private int IMAGE_WIDTH = 50;
     
     @FXML
     private VBox container;
@@ -151,8 +153,8 @@ public class CreateEmoticonController extends Controller {
         for (int i = 0; i < CANTIDAD_COMPONENTES_MOSTRADOS; i++) {
             ImageView imageView = new ImageView(new Image(componentesMostrados.get(i)));
             
-            imageView.setFitWidth(50);
-            imageView.setFitHeight(50);
+            imageView.setFitWidth(IMAGE_WIDTH);
+            imageView.setFitHeight(IMAGE_HEIGHT);
             imageView.setPickOnBounds(true);
             
             final int indiceComponenteSeleccionado = i;
