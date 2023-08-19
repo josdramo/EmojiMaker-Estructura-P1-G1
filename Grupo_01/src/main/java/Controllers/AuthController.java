@@ -25,9 +25,7 @@ import javafx.scene.layout.VBox;
  *
  * @author infrative
  */
-public class AuthController {
-    App app;
-    
+public class AuthController extends Controller {
     @FXML
     private VBox container;
     
@@ -41,9 +39,7 @@ public class AuthController {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        Boolean emptyCredentials = nombre.isBlank() || pass.isBlank();
-        
-        if (!emptyCredentials) {
+        if (!hasEmptyCredentials(nombre, pass)) {
             Usuario usuario = new Usuario(nombre, pass);
 
             TreeSet<Profile> perfiles = new TreeSet(new ProfileComparator());
@@ -53,18 +49,13 @@ public class AuthController {
             Boolean authSuccess = perfiles.contains(new Profile(usuario));
             
             if (authSuccess) {
-                Profile perfil = null;
-                
-                for (Profile p : perfiles) {
+                for (Profile perfil : perfiles) {
                     UserComparator userComparator = new UserComparator();
                     
-                    if (userComparator.compare(usuario, p.getUsuario()) == 0) {
-                        perfil = p;
+                    if (userComparator.compare(usuario, perfil.getUsuario()) == 0) {
+                        this.getApp().createSession(perfil);
+                        break;
                     }
-                }
-                
-                if (perfil != null) {
-                    app.createSession(perfil);
                 }
             }
 
@@ -76,7 +67,7 @@ public class AuthController {
             }
         }
         
-        if (emptyCredentials) {
+        else {
             showEmptyCredentialsAlert();
         }
     }
@@ -87,14 +78,16 @@ public class AuthController {
         alert.setHeaderText("No intentes pasarte de listo.");
         alert.showAndWait();
     }
+
+    private boolean hasEmptyCredentials(String nombre, String pass) {
+        return nombre.isBlank() || pass.isBlank();
+    }
     
     public void onRegister() {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        Boolean emptyCredentials = nombre.isBlank() || pass.isBlank();
-        
-        if (!emptyCredentials) {
+        if (!hasEmptyCredentials(nombre, pass)) {
             Usuario usuario = new Usuario(nombre, pass);
             Boolean alreadyRegistered = App.perfiles.contains(new Profile(usuario));
 
@@ -124,17 +117,13 @@ public class AuthController {
                 
                 App.perfiles.add(profile);
                 
-                app.createSession(profile);
+                this.getApp().createSession(profile);
             }
         }
         
-        if (emptyCredentials) {
+        else {
             showEmptyCredentialsAlert();
         }
-    }
-
-    public void setApp(App app) {
-        this.app = app;
     }
     
     

@@ -7,7 +7,6 @@ package Controllers;
 import Components.EmoticonItem;
 import Modelos.Emoji;
 import Modelos.Emoticon;
-import com.app.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -23,9 +22,7 @@ import javafx.scene.layout.VBox;
  *
  * @author infrative
  */
-public class ConsultarEmojisController {
-    private App app;
-    
+public class ConsultarEmojisController extends Controller {    
     @FXML
     private VBox container;
     
@@ -73,33 +70,29 @@ public class ConsultarEmojisController {
     }
     
     public void onVolverAlMenu() {
-        app.switchToMenuPrincipal();
+        this.getApp().switchToMenuPrincipal();
     }
     
     public void onAgregar() {
-        app.openCreateEmoticonModal();
+        this.getApp().openCreateEmoticonModal();
     }
     
     public void onEditar() {
         Integer emojiSelectedIndex = emojisListView.getSelectionModel().getSelectedIndex();
         if (emojiSelectedIndex != -1) {
-            app.openCreateEmoticonModal(emojiSelectedIndex);
+            this.getApp().openCreateEmoticonModal(emojiSelectedIndex);
         }
     }
     
     public void onEliminar() {
-        app.getProfile().getEmoticones().removeByIndex(emojisListView.getSelectionModel().getSelectedIndex());
+        this.getApp().getProfile().getEmoticones().removeByIndex(emojisListView.getSelectionModel().getSelectedIndex());
         buildEmojisListView();
-    }
-
-    public void setApp(App app) {
-        this.app = app;
     }
     
     private void buildEmojisListView() {
         emojisListView.getItems().clear();
         
-        for (Emoticon emoticon : app.getProfile().getEmoticones()) {
+        for (Emoticon emoticon : this.getApp().getProfile().getEmoticones()) {
             
             emojisListView.getItems().add(emoticon);
         }

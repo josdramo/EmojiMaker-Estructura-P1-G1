@@ -8,7 +8,6 @@ import static Datos.LeerArchivos.listaR;
 import Enums.EmojiComponentType;
 import TDAS.CircularList;
 import TDAS.ListaCircularDoble;
-import com.app.App;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,12 +38,11 @@ import javafx.stage.Stage;
  *
  * @author Dell
  */
-public class ModificacionComponenteController {
+public class ModificacionComponenteController extends Controller {
 
     @FXML
     private VBox container;
-    
-    App app;
+
     private String directorioEspecifico;
 
     @FXML
@@ -71,19 +69,19 @@ public class ModificacionComponenteController {
     @FXML
     void anadirBoca(ActionEvent event) {
         directorioEspecifico = "mouth";
-        app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
+        this.getApp().getProfile().getComponentes().get(EmojiComponentType.MOUTH).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
     }
 
     @FXML
     void anadirOjos(ActionEvent event) {
         directorioEspecifico = "eyes";
-        app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
+        this.getApp().getProfile().getComponentes().get(EmojiComponentType.MIRADA).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
     }
 
     @FXML
     void anadirRostro(ActionEvent event) {
         directorioEspecifico = "faces";
-        app.getProfile().getComponentes().get(EmojiComponentType.FACE).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
+        this.getApp().getProfile().getComponentes().get(EmojiComponentType.FACE).add(copiarArchivoEnCarpetaDeImagenes(directorioEspecifico));
     }
 
     @FXML
@@ -102,8 +100,8 @@ public class ModificacionComponenteController {
         GridPane.setHalignment(label, HPos.CENTER);
         GridPane.setValignment(label, VPos.CENTER);
 
-        for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).size(); i++) {
-            String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).get(i);
+        for (int i = 0; i < this.getApp().getProfile().getComponentes().get(EmojiComponentType.MOUTH).size(); i++) {
+            String rutaImagen = this.getApp().getProfile().getComponentes().get(EmojiComponentType.MOUTH).get(i);
 
             ImageView imageView = new ImageView(new Image(rutaImagen));
             imageView.setFitWidth(100);
@@ -118,7 +116,7 @@ public class ModificacionComponenteController {
             }
             int index = i;
             imageView.setOnMouseClicked(e -> {
-                app.getProfile().getComponentes().get(EmojiComponentType.MOUTH).removeByIndex(index);
+                this.getApp().getProfile().getComponentes().get(EmojiComponentType.MOUTH).removeByIndex(index);
 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Aviso");
@@ -162,8 +160,8 @@ public class ModificacionComponenteController {
         int column = 0;
         int row = 2;
 
-        for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).size(); i++) {
-            String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).get(i);
+        for (int i = 0; i < this.getApp().getProfile().getComponentes().get(EmojiComponentType.MIRADA).size(); i++) {
+            String rutaImagen = this.getApp().getProfile().getComponentes().get(EmojiComponentType.MIRADA).get(i);
 
             ImageView imageView = new ImageView(new Image(rutaImagen));
             imageView.setFitWidth(100);
@@ -178,7 +176,7 @@ public class ModificacionComponenteController {
             }
             int index = i;
             imageView.setOnMouseClicked(e -> {
-                app.getProfile().getComponentes().get(EmojiComponentType.MIRADA).removeByIndex(index);
+                this.getApp().getProfile().getComponentes().get(EmojiComponentType.MIRADA).removeByIndex(index);
 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Aviso");
@@ -222,8 +220,8 @@ public class ModificacionComponenteController {
         int column = 0;
         int row = 2;
 
-        for (int i = 0; i < app.getProfile().getComponentes().get(EmojiComponentType.FACE).size(); i++) {
-            String rutaImagen = app.getProfile().getComponentes().get(EmojiComponentType.FACE).get(i);
+        for (int i = 0; i < this.getApp().getProfile().getComponentes().get(EmojiComponentType.FACE).size(); i++) {
+            String rutaImagen = this.getApp().getProfile().getComponentes().get(EmojiComponentType.FACE).get(i);
 
             ImageView imageView = new ImageView(new Image(rutaImagen));
             imageView.setFitWidth(100);
@@ -238,7 +236,7 @@ public class ModificacionComponenteController {
             }
             int index = i;
             imageView.setOnMouseClicked(e -> {
-                app.getProfile().getComponentes().get(EmojiComponentType.FACE).removeByIndex(index);
+                this.getApp().getProfile().getComponentes().get(EmojiComponentType.FACE).removeByIndex(index);
 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Aviso");
@@ -271,7 +269,7 @@ public class ModificacionComponenteController {
 
     @FXML
     void volverMenuPrincipal(ActionEvent event) {
-        app.switchToMenuPrincipal();
+        this.getApp().switchToMenuPrincipal();
     }
 
     public String copiarArchivoEnCarpetaDeImagenes(String directorioEspecifico) {
@@ -289,10 +287,6 @@ public class ModificacionComponenteController {
             return "file:" + rutaArchivoSeleccionado;
         }
         return null;
-    }
-
-    public void setApp(App app) {
-        this.app = app;
     }
     
     public void initialize(){

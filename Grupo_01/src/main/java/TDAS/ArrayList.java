@@ -73,15 +73,17 @@ public class ArrayList<T> implements List<T>, Serializable, Iterable<T> {
     @Override
     public void removeByIndex(int index) {
         if (index >= 0 && index < size) {
-            for (int i = index; i < size - 1; i++) {
-                elements[i] = elements[i + 1];
-            }
+            // Copiar los elementos restantes a una posición anterior en el array
+            System.arraycopy(elements, index + 1, elements, index, size - index - 1);
+            
+            // Establecer el último elemento como nulo y reducir el tamaño
             elements[size - 1] = null;
             size--;
         } else {
             throw new IndexOutOfBoundsException("Index out of range: " + index);
         }
     }
+    
 
     @Override
     public Iterator<T> iterator() {
