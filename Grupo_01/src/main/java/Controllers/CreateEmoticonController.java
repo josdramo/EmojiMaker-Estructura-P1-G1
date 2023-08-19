@@ -8,7 +8,6 @@ import Enums.EmojiComponentType;
 import Modelos.Emoticon;
 import TDAS.CircularArray;
 import TDAS.CircularList;
-import com.app.App;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.ImageView;
@@ -25,10 +24,8 @@ import javafx.stage.Stage;
  *
  * @author infrative
  */
-public class CreateEmoticonController {
+public class CreateEmoticonController extends Controller {
     final private int CANTIDAD_COMPONENTES_MOSTRADOS = 3;
-    
-    private App app;
     
     @FXML
     private VBox container;
@@ -67,14 +64,14 @@ public class CreateEmoticonController {
     }
     
     public void onDeshacer() {
-        emoticon.restoreLastChange(app.getProfile().getComponentes());
+        emoticon.restoreLastChange(this.getApp().getProfile().getComponentes());
         refreshEmoticonImageView();
     }
     
     public void onMostrarRostros() {
         currentComponentType = EmojiComponentType.FACE;
         
-        componentes = app.getProfile().getComponentes().get(currentComponentType);
+        componentes = this.getApp().getProfile().getComponentes().get(currentComponentType);
         
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
@@ -83,7 +80,7 @@ public class CreateEmoticonController {
     public void onMostrarMiradas() {
         currentComponentType = EmojiComponentType.MIRADA;
         
-        componentes = app.getProfile().getComponentes().get(currentComponentType);
+        componentes = this.getApp().getProfile().getComponentes().get(currentComponentType);
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
     }
@@ -91,7 +88,7 @@ public class CreateEmoticonController {
     public void onMostrarMouths() {
         currentComponentType = EmojiComponentType.MOUTH;
         
-        componentes = app.getProfile().getComponentes().get(currentComponentType);
+        componentes = this.getApp().getProfile().getComponentes().get(currentComponentType);
         cambiarComponentesMostrados();
         actualizarComponentsHBox();
     }
@@ -118,28 +115,24 @@ public class CreateEmoticonController {
         Stage stage = (Stage) container.getScene().getWindow();
         
         if (indexEmoticonToEditInProfile != null && !emoticon.isEmpty()) {
-            app.getProfile().getEmoticones().update(indexEmoticonToEditInProfile, emoticon);
+            this.getApp().getProfile().getEmoticones().update(indexEmoticonToEditInProfile, emoticon);
         }
         
         if (indexEmoticonToEditInProfile == null && !emoticon.isEmpty()) {
-            app.getProfile().getEmoticones().add(emoticon);
+            this.getApp().getProfile().getEmoticones().add(emoticon);
         }
         
-        app.getConsultarEmojisController().build();
+        this.getApp().getConsultarEmojisController().build();
         
         stage.close();
-        app.loadCreateEmoticonFxml();
+        this.getApp().loadCreateEmoticonFxml();
     }
     
     public void onCancelar() {
         Stage stage = (Stage) container.getScene().getWindow();
         
         stage.close();
-        app.loadCreateEmoticonFxml();
-    }
-    
-    public void setApp(App app) {
-        this.app = app;
+        this.getApp().loadCreateEmoticonFxml();
     }
     
     private void cambiarComponentesMostrados() {
@@ -198,7 +191,7 @@ public class CreateEmoticonController {
     public void setIndexEmoticonToEditInProfile(int indexEmoticonToEditInProfile) {
         this.indexEmoticonToEditInProfile = indexEmoticonToEditInProfile;
         
-        this.emoticon = app.getProfile().getEmoticones().get(indexEmoticonToEditInProfile);
+        this.emoticon = this.getApp().getProfile().getEmoticones().get(indexEmoticonToEditInProfile);
         refreshEmoticonImageView();
     }
 }

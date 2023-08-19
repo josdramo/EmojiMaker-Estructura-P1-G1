@@ -25,9 +25,7 @@ import javafx.scene.layout.VBox;
  *
  * @author infrative
  */
-public class AuthController {
-    App app;
-    
+public class AuthController extends Controller {
     @FXML
     private VBox container;
     
@@ -64,7 +62,7 @@ public class AuthController {
                 }
                 
                 if (perfil != null) {
-                    app.createSession(perfil);
+                    this.getApp().createSession(perfil);
                 }
             }
 
@@ -124,17 +122,13 @@ public class AuthController {
                 
                 App.perfiles.add(profile);
                 
-                app.createSession(profile);
+                this.getApp().createSession(profile);
             }
         }
         
         if (emptyCredentials) {
             showEmptyCredentialsAlert();
         }
-    }
-
-    public void setApp(App app) {
-        this.app = app;
     }
     
     

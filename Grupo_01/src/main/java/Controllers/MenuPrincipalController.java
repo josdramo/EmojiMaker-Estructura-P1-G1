@@ -25,28 +25,21 @@ import javafx.stage.FileChooser.ExtensionFilter;
  *
  * @author infrative
  */
-public class MenuPrincipalController {
-
-    private App app;
-
+public class MenuPrincipalController extends Controller {
     @FXML
     private VBox container;
 
     @FXML
     void onConsultarComponentes(ActionEvent event) {
-        app.switchToModificacionComponente();
+        this.getApp().switchToModificacionComponente();
     }
 
     public void onConsultarEmojis() {
-        app.switchToConsultarEmojis();
+        this.getApp().switchToConsultarEmojis();
     }
 
     public void onSalir() {
-        app.destroySession();
-    }
-
-    public void setApp(App app) {
-        this.app = app;
+        this.getApp().destroySession();
     }
     
     public void initialize(){
