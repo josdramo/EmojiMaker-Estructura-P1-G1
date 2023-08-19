@@ -69,22 +69,19 @@ public class AuthController {
             }
 
             if (!authSuccess) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Credenciales incorrectas.");
-                alert.showAndWait();
+                showEmptyCredentialsAlert("Credenciales incorrectas.");
             }
         }
         
         if (emptyCredentials) {
-            showEmptyCredentialsAlert();
+            showEmptyCredentialsAlert("No intentes pasarte de listo.");
         }
     }
     
-    public void showEmptyCredentialsAlert() {
+    public void showEmptyCredentialsAlert(String texto) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Error");
-        alert.setHeaderText("No intentes pasarte de listo.");
+        alert.setHeaderText(texto);
         alert.showAndWait();
     }
     
@@ -99,10 +96,7 @@ public class AuthController {
             Boolean alreadyRegistered = App.perfiles.contains(new Profile(usuario));
 
             if (alreadyRegistered) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Nombre de usuario ocupado.");
-                alert.showAndWait();
+                showEmptyCredentialsAlert("Nombre de usuario ocupado.");
             }
 
             if (!alreadyRegistered) {
@@ -129,7 +123,7 @@ public class AuthController {
         }
         
         if (emptyCredentials) {
-            showEmptyCredentialsAlert();
+            showEmptyCredentialsAlert("No intentes pasarte de listo.");
         }
     }
 
