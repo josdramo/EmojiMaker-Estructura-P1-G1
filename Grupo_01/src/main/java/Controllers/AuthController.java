@@ -51,18 +51,13 @@ public class AuthController extends Controller {
             Boolean authSuccess = perfiles.contains(new Profile(usuario));
             
             if (authSuccess) {
-                Profile perfil = null;
-                
-                for (Profile p : perfiles) {
+                for (Profile perfil : perfiles) {
                     UserComparator userComparator = new UserComparator();
                     
-                    if (userComparator.compare(usuario, p.getUsuario()) == 0) {
-                        perfil = p;
+                    if (userComparator.compare(usuario, perfil.getUsuario()) == 0) {
+                        this.getApp().createSession(perfil);
+                        break;
                     }
-                }
-                
-                if (perfil != null) {
-                    this.getApp().createSession(perfil);
                 }
             }
 
