@@ -39,9 +39,7 @@ public class AuthController extends Controller {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        Boolean emptyCredentials = nombre.isBlank() || pass.isBlank();
-        
-        if (!emptyCredentials) {
+        if (!hasEmptyCredentials(nombre, pass)) {
             Usuario usuario = new Usuario(nombre, pass);
 
             TreeSet<Profile> perfiles = new TreeSet(new ProfileComparator());
@@ -69,7 +67,7 @@ public class AuthController extends Controller {
             }
         }
         
-        if (emptyCredentials) {
+        else {
             showEmptyCredentialsAlert();
         }
     }
@@ -80,14 +78,16 @@ public class AuthController extends Controller {
         alert.setHeaderText("No intentes pasarte de listo.");
         alert.showAndWait();
     }
+
+    private boolean hasEmptyCredentials(String nombre, String pass) {
+        return nombre.isBlank() || pass.isBlank();
+    }
     
     public void onRegister() {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        Boolean emptyCredentials = nombre.isBlank() || pass.isBlank();
-        
-        if (!emptyCredentials) {
+        if (!hasEmptyCredentials(nombre, pass)) {
             Usuario usuario = new Usuario(nombre, pass);
             Boolean alreadyRegistered = App.perfiles.contains(new Profile(usuario));
 
@@ -121,7 +121,7 @@ public class AuthController extends Controller {
             }
         }
         
-        if (emptyCredentials) {
+        else {
             showEmptyCredentialsAlert();
         }
     }
