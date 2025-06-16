@@ -26,9 +26,9 @@ import javafx.stage.Stage;
  */
 public class CreateEmoticonController extends Controller {
 
-    final private int CANTIDAD_COMPONENTES_MOSTRADOS = 3;
-    final private int IMAGE_HEIGHT = 50;
-    final private int IMAGE_WIDTH = 50;
+    private static final int CANTIDAD_COMPONENTES_MOSTRADOS = 3;
+    private static final int IMAGE_HEIGHT = 50;
+    private static final int IMAGE_WIDTH = 50;
 
     @FXML
     private VBox container;
