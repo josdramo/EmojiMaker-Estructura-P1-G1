@@ -39,37 +39,38 @@ public class AuthController extends Controller {
         String nombre = usernameField.getText();
         String pass = passwordField.getText();
         
-        if (!hasEmptyCredentials(nombre, pass)) {
-            Usuario usuario = new Usuario(nombre, pass);
+        if (hasEmptyCredentials(nombre, pass)) {
+            showAlert("Error", "No intentes pasarte de listo.");
+            return;
+        }
 
-            TreeSet<Profile> perfiles = new TreeSet(new ProfileComparator());
-            
-            perfiles.addAll(App.perfiles);
+        if (authenticate(nombre, pass)) {
+            return;
+        }
 
-            Boolean authSuccess = perfiles.contains(new Profile(usuario));
-            
-            if (authSuccess) {
-                for (Profile perfil : perfiles) {
-                    UserComparator userComparator = new UserComparator();
-                    
-                    if (userComparator.compare(usuario, perfil.getUsuario()) == 0) {
-                        this.getApp().createSession(perfil);
-                        break;
-                    }
-                }
-            }
+        showAlert("Error", "Credenciales incorrectas.");
+    }
+    
+    private boolean authenticate(String nombre, String pass) {
+        Usuario usuario = new Usuario(nombre, pass);
 
-            if (!authSuccess) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Credenciales incorrectas.");
-                alert.showAndWait();
+        TreeSet<Profile> perfiles = new TreeSet<>(new ProfileComparator());
+        perfiles.addAll(App.perfiles);
+
+        // Comprueba existencia
+        Profile lookup = new Profile(usuario);
+        if (!perfiles.contains(lookup)) {
+            return false;
+        }
+
+        // Busca el perfil exacto y crea sesión
+        for (Profile perfil : perfiles) {
+            if (new UserComparator().compare(usuario, perfil.getUsuario()) == 0) {
+                getApp().createSession(perfil);
+                return true;
             }
         }
-        
-        else {
-            showEmptyCredentialsAlert();
-        }
+        return false;
     }
     
     public void showEmptyCredentialsAlert() {
@@ -78,52 +79,52 @@ public class AuthController extends Controller {
         alert.setHeaderText("No intentes pasarte de listo.");
         alert.showAndWait();
     }
+    
+    public void onRegister() {
+        String nombre = usernameField.getText();
+        String pass = passwordField.getText();
+
+        if (hasEmptyCredentials(nombre, pass)) {
+            showAlert("Error", "No intentes pasarte de listo.");
+            return;
+        }
+
+        Profile nuevo = buildNewProfile(nombre, pass);
+        if (App.perfiles.contains(nuevo)) {
+            showAlert("Error", "Nombre de usuario ocupado.");
+        } else {
+            App.perfiles.add(nuevo);
+            getApp().createSession(nuevo);
+        }
+    }
+    
+    private Profile buildNewProfile(String nombre, String pass) {
+        Usuario usuario = new Usuario(nombre, pass);
+        Map<EmojiComponentType, CircularList<String>> componentes = new HashMap<>();
+        componentes.put(EmojiComponentType.FACE, LeerArchivos.listaR());
+        componentes.put(EmojiComponentType.MIRADA, LeerArchivos.listaO());
+        componentes.put(EmojiComponentType.MOUTH, LeerArchivos.listaB());
+
+        // Emoticon inicial
+        Emoticon emoticon = new Emoticon();
+        emoticon.updateComponent(EmojiComponentType.FACE, componentes.get(EmojiComponentType.FACE).get(1));
+        emoticon.updateComponent(EmojiComponentType.MIRADA, componentes.get(EmojiComponentType.MIRADA).get(3));
+        emoticon.updateComponent(EmojiComponentType.MOUTH, componentes.get(EmojiComponentType.MOUTH).get(0));
+
+        Profile profile = new Profile(usuario, componentes);
+        profile.getEmoticones().add(emoticon);
+        return profile;
+    }
 
     private boolean hasEmptyCredentials(String nombre, String pass) {
         return nombre.isBlank() || pass.isBlank();
     }
     
-    public void onRegister() {
-        String nombre = usernameField.getText();
-        String pass = passwordField.getText();
-        
-        if (!hasEmptyCredentials(nombre, pass)) {
-            Usuario usuario = new Usuario(nombre, pass);
-            Boolean alreadyRegistered = App.perfiles.contains(new Profile(usuario));
-
-            if (alreadyRegistered) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Nombre de usuario ocupado.");
-                alert.showAndWait();
-            }
-
-            if (!alreadyRegistered) {
-                Map<EmojiComponentType, CircularList<String>> componentes = new HashMap();
-                
-                componentes.put(EmojiComponentType.FACE, LeerArchivos.listaR());
-                componentes.put(EmojiComponentType.MIRADA, LeerArchivos.listaO());
-                componentes.put(EmojiComponentType.MOUTH, LeerArchivos.listaB());
-                
-                Emoticon emoticonUno = new Emoticon();
-                
-                emoticonUno.updateComponent(EmojiComponentType.FACE, componentes.get(EmojiComponentType.FACE).get(1));
-                emoticonUno.updateComponent(EmojiComponentType.MIRADA, componentes.get(EmojiComponentType.MIRADA).get(3));
-                emoticonUno.updateComponent(EmojiComponentType.MOUTH, componentes.get(EmojiComponentType.MOUTH).get(0));
-                
-                Profile profile = new Profile(usuario, componentes);
-                
-                profile.getEmoticones().add(emoticonUno);
-                
-                App.perfiles.add(profile);
-                
-                this.getApp().createSession(profile);
-            }
-        }
-        
-        else {
-            showEmptyCredentialsAlert();
-        }
+    private void showAlert(String title, String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(msg);
+        alert.showAndWait();
     }
     
     
